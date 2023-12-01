@@ -11,7 +11,24 @@
     <link rel="stylesheet" href="~/Content/CSS/FormStyleSheet.css">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js"></script>
     <script>
+
+        function CheckTextField() {
+            var notificationText = "Field(s) ";
+            var flag = true;
+            if (document.getElementById("FirstNameId").value == "") { notificationText = notificationText.concat("Firstname ,");  flag = false};
+            if (document.getElementById("LastNameId").value == "") { notificationText = notificationText.concat("LastName ,"); flag = false };
+            if (document.getElementById("NicId").value == "") { notificationText = notificationText.concat("NIC ,"); flag = false };
+            if (document.getElementById("MobileNumberId").value == "") { notificationText = notificationText.concat("mobileNumber ,"); flag = false };
+            if (document.getElementById("EmailId").value == "") { notificationText = notificationText.concat("email ,"); flag = false };
+
+            notificationText = notificationText.concat("are mandatory")
+            if (flag) { PostData() }
+            else { document.getElementById("notificationId").innerHTML = notificationText; }
+            
+        }
+
         function PostData() {
             var data = {
                 FirstName: document.getElementById("FirstNameId").value,
@@ -34,7 +51,7 @@
                     else {
                         console.log("Registration Failed");
                         var notification = document.getElementById("notificationId")
-                        notification.value ="Registration Failed"
+                        notification.innerHTML ="Registration Failed"
                     }
                 },
                 error: function (error) {
@@ -56,8 +73,8 @@
 
             <div class="input-container">
                 <div class="input-field">
-                    <label for="FirstName :">FirstName</label>
-                    <input type="text" id="FirstNameId" name="FirstName">
+                    <label for="FirstName :">FirstName*</label>
+                    <input type="text" id="FirstNameId" name="FirstName" required>
                 </div>
 
                 <div class="input-field">
@@ -66,29 +83,31 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="LastName :">LaststName</label>
-                    <input type="text" id="LastNameId" name="LastName">
+                    <label for="LastName :">LaststName*</label>
+                    <input type="text" id="LastNameId" name="LastName" required>
                 </div>
 
                 <div class="input-field">
-                    <label for="Nic :">Nic</label>
-                    <input type="text" id="NicId" name="Nic">
+                    <label for="Nic :">Nic*</label>
+                    <input type="text" id="NicId" name="Nic" required>
                 </div>
 
                 <div class="input-field">
-                    <label for="MobileNumber :">MobileNumber</label>
-                    <input type="number" id="MobileNumberId" name="MobileNumber">
+                    <label for="MobileNumber :">MobileNumber*</label>
+                    <input type="number" id="MobileNumberId" name="MobileNumber" required>
                 </div>
 
                 <div class="input-field">
-                    <label for="Email :">Email</label>
-                    <input type="text" id="EmailId" name="Email">
+                    <label for="Email :">Email*</label>
+                    <input type="text" id="EmailId" name="Email" required>
                 </div>
 
-                <label id="notificationId" class="notification"></label>
+                <div class="notification">
+                    <label id="notificationId"></label>
+                </div>
 
                 <div class="button-container">
-                    <input type="button" value="Sign Up" OnClick="PostData()">
+                    <input type="button" value="Sign Up" OnClick="CheckTextField()">
                 </div>
             </div>
         </form>
