@@ -40,7 +40,7 @@ namespace V08.Controllers
         {
             int id = acc.EmployeeId;
             string password = acc.Password;
-            if (_userBL.IsCrednetialValid(id, password))
+            if (_userBL.Authenticated(id, password))
             {
                 return Json(new { message = "Success" });
             }

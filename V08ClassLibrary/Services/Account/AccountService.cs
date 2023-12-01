@@ -35,7 +35,7 @@ namespace V08ClassLibrary.Services
         {
             throw new NotImplementedException();
         }
-        public bool IsCrednetialValid(int id, string password)
+        public bool Authenticated(int id, string password)
         {
             IAccount user = _accountRepository.Get(id);
             return (user == null || user.Password != password) ? false : true;

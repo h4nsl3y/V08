@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Reflection;
 using System.Collections;
 using System.Diagnostics.Eventing.Reader;
+using V08ClassLibrary.Log;
 
 namespace V08ClassLibrary.DatabaseUtil
 {
@@ -19,8 +20,10 @@ namespace V08ClassLibrary.DatabaseUtil
     {
         private readonly string _connString;
         private SqlConnection _connection;
+        private Logger _logger;
         public DataAccessLayer()
         {
+            _logger = new Logger();
             _connString = ConfigurationManager.AppSettings["ConnectionString"];
         }
         public void Connect()
@@ -35,7 +38,7 @@ namespace V08ClassLibrary.DatabaseUtil
             }
             catch (Exception error)
             {
-                // TO DO : create a logger
+                _logger.Log(error);
                 throw;
             }
         }
@@ -84,6 +87,7 @@ namespace V08ClassLibrary.DatabaseUtil
         }
         public T MapObject<T>(IDataReader reader)
         {
+
             Type type = typeof(T);
             T obj = Activator.CreateInstance<T>();
             string propertyName;

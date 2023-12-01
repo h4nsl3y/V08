@@ -15,6 +15,6 @@ namespace V08ClassLibrary.Services
         void Update(int id);
         IAccount Get(int id);
         IEnumerable<IAccount> GetAll();
-        bool IsCrednetialValid(int id, string password);
+        bool Authenticated(int id, string password);
     }
 }

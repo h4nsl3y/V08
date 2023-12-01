@@ -16,35 +16,22 @@ namespace V08.Controllers
         {
             _userService = userService;
         }
-/*        User user = new User()
-        {
-            FirstName = "aaa",
-            OtherName = " ",
-            LastName = "bbb",
-            Nic = "ccc",
-            MobileNumber = 123457,
-            Email = "somethin2@gmail.com"
-        };*/
 
         public ActionResult Index()
         {
             string res =  _userService.Get(1).Email;
-            //return View();
-            //_baseService.Add(user);
             return Content(res);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

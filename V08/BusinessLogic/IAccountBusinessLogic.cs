@@ -11,8 +11,8 @@ namespace V08.BusinessLogic
     {
         bool AccountExist();
         IEnumerable<ITraining> GetTrainingList();
-        bool IsCrednetialValid(int id, string password);
-        bool IsDuplicate(string field, string value);
+        bool Authenticated(int id, string password);
+        bool Duplicated(string field, string value);
         void RegisterUser(IAccount acc);
     }
 }

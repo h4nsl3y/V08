@@ -26,11 +26,11 @@ namespace V08.BusinessLogic
         {
             return _trainingService.GetAll();
         }
-        public bool IsCrednetialValid(int id, string password)
+        public bool Authenticated(int id, string password)
         {
-            return _accountService.IsCrednetialValid(id, password);
+            return _accountService.Authenticated(id, password);
         }
-        public bool IsDuplicate(string field, string value)
+        public bool Duplicated(string field, string value)
         {
             throw new NotImplementedException();
         }

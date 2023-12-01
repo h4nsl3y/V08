@@ -6,7 +6,6 @@ using V08ClassLibrary.DataAccessLayer;
 using V08ClassLibrary.DatabaseUtil;
 using V08ClassLibrary.Entity;
 using V08ClassLibrary.Services;
-using V08ClassLibrary.Test;
 
 namespace V08
 {
@@ -49,8 +48,6 @@ namespace V08
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-
-            container.RegisterType<test1>();
 
             container.RegisterType<IAccount, Account>();
             container.RegisterType<ITraining, Training>();
