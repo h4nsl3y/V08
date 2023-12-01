@@ -15,7 +15,6 @@ namespace V08ClassLibrary.Entity
         string Nic { get; set; }
         int MobileNumber { get; set; }
         string Email { get; set; }
-
         int? DepartmentId { get; set; }
         int? ManagerId { get; set; }
         string Password { get; set; }

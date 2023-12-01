@@ -10,10 +10,10 @@ namespace V08ClassLibrary.Entity
 {
     public class Enrollment : IEnrollment
     {
-        public int enrollmentId { get; set; }
-        public int employeeId { get; set; }
-        public int trainingId { get; set; }
-        public int status { get; set; } // 'Rejected','Approved','Waiting_For_Approval',
-        public DateTime submissionDate { get; set; }
+        public int EnrollmentId { get; set; }
+        public int EmployeeId { get; set; }
+        public int TrainingId { get; set; }
+        public int Status { get; set; } 
+        public DateTime SubmissionDate { get; set; }
     }
 }

@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using V08ClassLibrary.Entity;
 
-namespace V08ClassLibrary.DataAccessLayer
+namespace V08ClassLibrary.Services
 {
-    public interface IAccountRepository
+    public interface IAccountService
     {
         void Add(IAccount user);
         void Delete(int id);
-        void Update(IAccount user);
+        void Update(int id);
         IAccount Get(int id);
         IEnumerable<IAccount> GetAll();
-        /*
-        IEnumerable<IUser> GetEntityList(DataTable table);
-        IUser GetEntity(DataRow row);*/
-
-        string tester();
+        bool IsCrednetialValid(int id, string password);
     }
 }

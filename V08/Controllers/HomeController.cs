@@ -6,17 +6,14 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using V08ClassLibrary.Entity;
 using V08ClassLibrary.Services;
-using V08ClassLibrary.Test;
 
 namespace V08.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly test1 _t1;
         private readonly IAccountService _userService;
-        public HomeController(test1 t1, IAccountService userService)
+        public HomeController(IAccountService userService)
         {
-            _t1 = t1;
             _userService = userService;
         }
 /*        User user = new User()

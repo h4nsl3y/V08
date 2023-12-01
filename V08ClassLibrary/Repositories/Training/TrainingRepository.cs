@@ -12,10 +12,10 @@ namespace V08ClassLibrary.DataAccessLayer
 {
     public class TrainingRepository : ITrainingRepository
     {
-        private readonly IDataAcessLayer _dbUtils;
-        public TrainingRepository(IDataAcessLayer dbUtils)
+        private readonly IDataAcessLayer _dataAccessLayer;
+        public TrainingRepository(IDataAcessLayer dataAccessLayer)
         {
-            _dbUtils = dbUtils;
+            _dataAccessLayer = dataAccessLayer;
         }
         public void Add(ITraining training)
         {
@@ -26,45 +26,29 @@ namespace V08ClassLibrary.DataAccessLayer
                                               $"@Prerequisite, @SeatNumber, @Deadline" +
                                               $"@ShortDescription, @LongDescription)";
             List<SqlParameter> parameters = GetSqlParameter(training);
-            _dbUtils.ExecuteQuery<Training>(query, parameters);
+            _dataAccessLayer.ExecuteQuery<Training>(query, parameters);
         }
-
         public void Delete(int id)
         {
             throw new NotImplementedException();
         }
-
         public ITraining Get(int id)
         {
             string query = $"Select * from trainingView where trainingID ={id}";
-            return _dbUtils.ExecuteQuery<Training>(query).First();
+            return _dataAccessLayer.ExecuteQuery<Training>(query).First();
         }
-
         public IEnumerable<ITraining> GetAll()
         {
             string query = $"Select * from trainingView ";
-            return _dbUtils.ExecuteQuery<Training>(query);
+            return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
-
-/*        public ITraining GetEntity(DataRow row)
-        {
-
-        }
-
-        public IEnumerable<ITraining> GetEntityList(DataTable table)
-        {
-            throw new NotImplementedException();
-        }*/
-
         public void Update(ITraining user)
         {
             throw new NotImplementedException();
         }
-
-        public List<SqlParameter> GetSqlParameter(ITraining training)
+        private List<SqlParameter> GetSqlParameter(ITraining training)
         {
             List<SqlParameter> list = new List<SqlParameter>();
-
             list.Add(new SqlParameter("@TrainingId", training.TrainingId));
             list.Add(new SqlParameter("@Title", training.Title));
             list.Add(new SqlParameter("@DepartmentId", training.DepartmentId));
@@ -76,9 +60,7 @@ namespace V08ClassLibrary.DataAccessLayer
             list.Add(new SqlParameter("@Deadline", training.Deadline));
             list.Add(new SqlParameter("@ShortDescription", training.ShortDescription));
             list.Add(new SqlParameter("@LongDescription", training.LongDescription));
-
             return list;
         }
-
     }
 }

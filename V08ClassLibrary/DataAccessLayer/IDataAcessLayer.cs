@@ -12,8 +12,6 @@ namespace V08ClassLibrary.DatabaseUtil
     {
         void Connect();
         void Disconnect();
-        /*        DataTable GetData(string sql);
-                DataTable GetData(string sql, List<SqlParameter> parameters);*/
         List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters);
         List<T> ExecuteQuery<T>(string query);
         T MapObject<T>(IDataReader reader);

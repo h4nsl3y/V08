@@ -18,21 +18,19 @@ namespace V08ClassLibrary.DatabaseUtil
     public class DataAccessLayer : IDataAcessLayer
     {
         private readonly string _connString;
-        private SqlConnection _conn;
-
+        private SqlConnection _connection;
         public DataAccessLayer()
         {
             _connString = ConfigurationManager.AppSettings["ConnectionString"];
         }
-
         public void Connect()
         {
             try
             {
-                if (_conn == null || _conn.State != ConnectionState.Open)
+                if (_connection == null || _connection.State != ConnectionState.Open)
                 {
-                    _conn = new SqlConnection(_connString);
-                    _conn.Open();
+                    _connection = new SqlConnection(_connString);
+                    _connection.Open();
                 }
             }
             catch (Exception error)
@@ -43,18 +41,17 @@ namespace V08ClassLibrary.DatabaseUtil
         }
         public void Disconnect()
         {
-            if (_conn != null && _conn.State != ConnectionState.Open)
+            if (_connection != null && _connection.State != ConnectionState.Open)
             {
-                _conn.Close();
+                _connection.Close();
             }
         }
-
         public List<T> ExecuteQuery<T>(string query)
         {
             List<T> objList = new List<T>();
             Connect();
             
-                SqlCommand cmd = new SqlCommand(query, _conn);
+                SqlCommand cmd = new SqlCommand(query, _connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -66,12 +63,11 @@ namespace V08ClassLibrary.DatabaseUtil
             
             return objList;
         }
-
         public List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters)
         {
             List<T> objList = new List<T>();
             Connect();
-            using (SqlCommand sqlCommand = new SqlCommand(query, _conn))
+            using (SqlCommand sqlCommand = new SqlCommand(query, _connection))
             {
                 sqlCommand.Parameters.AddRange(parameters.ToArray());
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -86,7 +82,6 @@ namespace V08ClassLibrary.DatabaseUtil
             Disconnect();
             return objList;
         }
-
         public T MapObject<T>(IDataReader reader)
         {
             Type type = typeof(T);
@@ -117,7 +112,6 @@ namespace V08ClassLibrary.DatabaseUtil
             }
             return obj;
         }
-
         public T ConvertFromDBVal<T>(object obj)
         {
             return (obj == null || obj == DBNull.Value) ?   default(T) : (T)obj;

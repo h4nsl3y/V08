@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +7,12 @@ using V08ClassLibrary.Entity;
 
 namespace V08ClassLibrary.Services
 {
-    public interface IAccountService
+    public interface IEnrollmentService
     {
-        void Add(IAccount user);
+        void Add(IEnrollment enrollment);
         void Delete(int id);
         void Update(int id);
-        IAccount Get(int id);
-        IEnumerable<IAccount> GetAll();
-
-        string tester();
+        IEnrollment Get(int id);
+        IEnumerable<IEnrollment> GetAll();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,5 @@ namespace V08ClassLibrary.DataAccessLayer
         void Update(ITraining user);
         ITraining Get(int id);
         IEnumerable<ITraining> GetAll();
-/*        IEnumerable<ITraining> GetEntityList(DataTable table);
-        ITraining GetEntity(DataRow row);*/
-
     }
 }

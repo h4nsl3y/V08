@@ -10,34 +10,36 @@ namespace V08.BusinessLogic
 {
     public class AccountBusinessLogic : IAccountBusinessLogic
     {
-        private readonly IAccountService _userService;
+        private readonly IAccountService _accountService;
         private readonly ITrainingService _trainingService;
 
-        public AccountBusinessLogic(IAccountService userService, ITrainingService trainingService)
+        public AccountBusinessLogic(IAccountService accountService, ITrainingService trainingService)
         {
-            _userService = userService;
+            _accountService = accountService;
             _trainingService = trainingService;
         }
-
-        public bool LogIn(int id, string password)
-        {
-            IAccount user = _userService.Get(id);
-            return (user == null || user.Password != password) ? false: true;
-        }
-        public IEnumerable<ITraining> GetTrainingList() 
-        {
-            return _trainingService.GetAll();
-        }
-
-        public void Register(IAccount acc)
-        {
-            _userService.Add(acc);
-        }
-        public bool checkDuplicate(string value)
+        public bool AccountExist()
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<ITraining> GetTrainingList()
+        {
+            return _trainingService.GetAll();
+        }
+        public bool IsCrednetialValid(int id, string password)
+        {
+            return _accountService.IsCrednetialValid(id, password);
+        }
+        public bool IsDuplicate(string field, string value)
+        {
+            throw new NotImplementedException();
+        }
+        public void RegisterUser(IAccount acc)
+        {
+            _accountService.Add(acc);
+        }
 
-   
+
+
     }
 }

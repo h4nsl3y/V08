@@ -210,14 +210,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Log.cshtml" />
     <Content Include="Views\Account\EmployeeView.cshtml" />
-    <Content Include="Views\Account\TestView.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\LogInPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Employee\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

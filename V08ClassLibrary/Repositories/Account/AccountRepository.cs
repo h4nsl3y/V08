@@ -43,20 +43,16 @@ namespace V08ClassLibrary.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public string tester()
-        {
-            return "DAL - all ok";
-        }
-        public List<SqlParameter> GetSqlParameter(IAccount user)
+        private List<SqlParameter> GetSqlParameter(IAccount account)
         {
             List<SqlParameter> list = new List<SqlParameter>();
 
-            list.Add(new SqlParameter("@FirstName", user.FirstName));
-            list.Add(new SqlParameter("@OtherName", user.OtherName));
-            list.Add(new SqlParameter("@LastName", user.LastName));
-            list.Add(new SqlParameter("@Nic", user.Nic));
-            list.Add(new SqlParameter("@MobileNumber", user.MobileNumber));
-            list.Add(new SqlParameter("@Email", user.Email));
+            list.Add(new SqlParameter("@FirstName", account.FirstName));
+            list.Add(new SqlParameter("@OtherName", account.OtherName));
+            list.Add(new SqlParameter("@LastName", account.LastName));
+            list.Add(new SqlParameter("@Nic", account.Nic));
+            list.Add(new SqlParameter("@MobileNumber", account.MobileNumber));
+            list.Add(new SqlParameter("@Email", account.Email));
 
             return list;
         }
