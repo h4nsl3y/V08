@@ -64,11 +64,14 @@ body{
     font-size: 13px;
     margin: 5px;
 }
-
 .training-title{
     margin: 0px 10px;
 }
 .small-description{
     font-size: 13px;
     margin: 0px 30px;
+}
+.hidden {
+    visibility: hidden;
+    display: none;
 }

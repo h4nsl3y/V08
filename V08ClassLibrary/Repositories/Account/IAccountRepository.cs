@@ -15,6 +15,7 @@ namespace V08ClassLibrary.DataAccessLayer
         void Delete(int id);
         void Update(Account user);
         Account Get(int id);
+        bool Authenticated(int id, string password);
         IEnumerable<Account> GetAll();
      
     }

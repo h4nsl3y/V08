@@ -13,16 +13,14 @@ namespace V08.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountBusinessLogic _accountBL;
-        public AccountController(IAccountBusinessLogic userBL)
+        public AccountController(IAccountBusinessLogic accountBL)
         {
-            _accountBL = userBL;
+            _accountBL = accountBL;
         }
         [HttpPost]
-        public ActionResult AuthenticateUser(Account acc)
+        public ActionResult AuthenticateUser(Account account)
         {
-            int id = acc.EmployeeId;
-            string password = acc.Password;
-            return (_accountBL.Authenticated(id, password)) ? Json(new { message = "Success" }) : Json(new { message = "Fail" });
+            return (_accountBL.Authenticated(account.EmployeeId, account.Password)) ? Json(new { message = "Success" }) : Json(new { message = "Fail" });
         }
         public ActionResult EmployeeViewPage()
         {
@@ -48,10 +46,10 @@ namespace V08.Controllers
             _accountBL.RegisterUser(acc);
             return Json(new { message = "Success" });
         }
-/*      [HttpGet]
- *      public JsonResult GetTrainingList()
+        [HttpGet]
+        public ActionResult GetTrainingList()
         {
-            return Json(_userBL.GetTrainingListJson);
-        }*/
+            return Json(_accountBL.GetTrainingList() , JsonRequestBehavior.AllowGet );
+        }
     }
 }

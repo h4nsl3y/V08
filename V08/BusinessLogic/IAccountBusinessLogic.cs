@@ -10,9 +10,9 @@ namespace V08.BusinessLogic
     public interface IAccountBusinessLogic
     {
         bool AccountExist();
-        string GetTrainingListJson();
+        IEnumerable<Training> GetTrainingList();
         bool Authenticated(int id, string password);
         bool Duplicated(string field, string value);
-        void RegisterUser(IAccount acc);
+        void RegisterUser(Account account);
     }
 }

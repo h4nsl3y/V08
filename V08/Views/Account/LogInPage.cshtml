@@ -17,10 +17,10 @@
             var flag = true;
             if (document.getElementById("EmployeeId").value == "") { notificationText = notificationText.concat("Employee ,"); flag = false };
             if (document.getElementById("PasswordId").value == "") { notificationText = notificationText.concat("Password ,"); flag = false };
-
             notificationText = notificationText.concat("are mandatory")
             if (flag) { PostData() }
             else { document.getElementById("notificationId").innerHTML = notificationText; }
+        }
 
         function PostData() {
             var data = {
@@ -35,12 +35,11 @@
                     console.log(result);
                     if (result.message == "Success") {
                         console.log("Sign in sucessfully...", data);
-                        window.location.href = '/EmployeeViewPage';
+                        window.location.href = 'EmployeeViewPage';
                     }
                     else {
                         console.log("Signing in Failed");
-                        var notification = document.getElementById("notificationId")
-                        notification.value = "Signing in Failed"
+                        document.getElementById("notificationId").innerHTML = "Signing in Failed"
                     }
                 },
                 error: function (error) {

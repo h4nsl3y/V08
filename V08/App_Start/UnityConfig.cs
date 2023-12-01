@@ -1,10 +1,12 @@
 using System;
 
 using Unity;
+using Unity.Lifetime;
 using V08.BusinessLogic;
 using V08ClassLibrary.DataAccessLayer;
 using V08ClassLibrary.DatabaseUtil;
 using V08ClassLibrary.Entity;
+using V08ClassLibrary.Repositories.GenericRepository;
 using V08ClassLibrary.Services;
 
 namespace V08
@@ -49,15 +51,13 @@ namespace V08
             // container.RegisterType<IProductRepository, ProductRepository>();
 
 
-            container.RegisterType<IAccount, Account>();
-            container.RegisterType<ITraining, Training>();
-            container.RegisterType<IEnrollment, Enrollment>();
-
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ITrainingService, TrainingService>();
 
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<ITrainingRepository, TrainingRepository>();
+
+
 
             container.RegisterType<IDataAcessLayer, DataAccessLayer>();
             container.RegisterType<IAccountBusinessLogic,AccountBusinessLogic>();

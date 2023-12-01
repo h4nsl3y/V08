@@ -19,6 +19,10 @@ namespace V08ClassLibrary.Services
         {
             _accountRepository.Add(acc);
         }
+        public bool Authenticated(int id, string password)
+        {
+           return _accountRepository.Authenticated(id, password);
+        }
         public void Delete(int id)
         {
             throw new NotImplementedException();
@@ -35,10 +39,6 @@ namespace V08ClassLibrary.Services
         {
             throw new NotImplementedException();
         }
-        public bool Authenticated(int id, string password)
-        {
-            Account user = _accountRepository.Get(id);
-            return (user == null || user.Password != password) ? false : true;
-        }
+       
     }
 }

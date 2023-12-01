@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using V08ClassLibrary.DatabaseUtil;
 using V08ClassLibrary.Entity;
+using V08ClassLibrary.Repositories.GenericRepository;
 
 namespace V08ClassLibrary.DataAccessLayer
 {
@@ -30,17 +31,23 @@ namespace V08ClassLibrary.DataAccessLayer
         }
         public Account Get(int id)
         {
-            string query = $"Select * from userView where EmployeeId  = {id} ; ";
+            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
         public IEnumerable<Account> GetAll()
         {
-            string query = $"Select * from userView ";
+            string query = $"SELECT * FROM USERVIEW";
             return _dataAccessLayer.ExecuteQuery<Account>(query);
         }
         public void Update(Account user)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Authenticated(int id, string password)
+        {
+            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}'; ";
+            return  _dataAccessLayer.ExecuteQuery<Account>(query).Count()  > 0;
         }
 
         private List<SqlParameter> GetSqlParameter(Account account)

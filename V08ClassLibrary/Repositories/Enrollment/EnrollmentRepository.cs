@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using V08ClassLibrary.DatabaseUtil;
 using V08ClassLibrary.Entity;
+using V08ClassLibrary.Repositories.GenericRepository;
 
 namespace V08ClassLibrary.Repositories
 {
@@ -41,6 +42,12 @@ namespace V08ClassLibrary.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void Update(Enrollment item)
+        {
+            throw new NotImplementedException();
+        }
+
         private List<SqlParameter> GetSqlParameter(Enrollment enrollment)
         {
             List<SqlParameter> list = new List<SqlParameter>();

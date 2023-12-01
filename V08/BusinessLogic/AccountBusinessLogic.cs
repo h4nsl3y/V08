@@ -23,14 +23,9 @@ namespace V08.BusinessLogic
         {
             throw new NotImplementedException();
         }
-        public string GetTrainingListJson()
+        public IEnumerable<Training> GetTrainingList()
         {
-            string trainingListJson = "";
-            foreach (ITraining training in _trainingService.GetAll())
-            {
-                
-            }
-            return trainingListJson;
+            return _trainingService.GetAll();
         }
         public bool Authenticated(int id, string password)
         {
@@ -40,9 +35,9 @@ namespace V08.BusinessLogic
         {
             throw new NotImplementedException();
         }
-        public void RegisterUser(IAccount acc)
+        public void RegisterUser(Account account)
         {
-            _accountService.Add(acc);
+            _accountService.Add(account);
         }
 
 

@@ -11,10 +11,11 @@ namespace V08ClassLibrary.Services
     public interface IAccountService
     {
         void Add(Account user);
+        bool Authenticated(int id, string password);
         void Delete(int id);
         void Update(int id);
         Account Get(int id);
         IEnumerable<Account> GetAll();
-        bool Authenticated(int id, string password);
+       
     }
 }
