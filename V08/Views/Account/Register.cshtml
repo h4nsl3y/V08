@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/CSS/FormStyleSheet.css">
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+
+        function PostData() {
+            var data = {
+                FirstName: document.getElementById("FirstNameId").value,
+                OtherName: document.getElementById("OtherNameId").value,
+                LastName: document.getElementById("LastNameId").value,
+                Nic: document.getElementById("NicId").value,
+                MobileNumber: document.getElementById("MobileNumberId").value,
+                Email: document.getElementById("EmailId").value
+            }
+/*
+            fetch("GetData", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // You may need to include additional headers based on your API requirements
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });*/
+
+            $.ajax({
+                type: 'POST',
+                url: "GetData",
+                //contentType: 'application/json',
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                    if (result.message == "Success") {
+                        console.log("Registering user...", data);
+                        window.location.href = '/Account/Log';
+                    }
+                    //window.location.href = 'AccountController/Login';
+                    else {
+                        console.log("Registration Failed");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+       
+
+
+    </script>
+
+</head>
+<body>
+
+    <div class="area">
+        <form>
+            <div class="image-container">
+
+            </div>
+
+            <h2>Registration</h2>
+
+            <div class="input-container">
+                <div class="input-field">
+                    <label for="FirstName :">FirstName</label>
+                    <input type="text" id="FirstNameId" name="FirstName">
+                </div>
+
+                <div class="input-field">
+                    <label for="OtherName :">OtherName</label>
+                    <input type="text" id="OtherNameId" name="OtherName">
+                </div>
+
+                <div class="input-field">
+                    <label for="LastName :">LaststName</label>
+                    <input type="text" id="LastNameId" name="LastName">
+                </div>
+
+                <div class="input-field">
+                    <label for="Nic :">Nic</label>
+                    <input type="text" id="NicId" name="Nic">
+                </div>
+
+                <div class="input-field">
+                    <label for="MobileNumber :">MobileNumber</label>
+                    <input type="number" id="MobileNumberId" name="MobileNumber">
+                </div>
+
+                <div class="input-field">
+                    <label for="Email :">Email</label>
+                    <input type="text" id="EmailId" name="Email">
+                </div>
+
+                <div class="button-container">
+                    <input type="button" value="Sign Up" OnClick="PostData()">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+

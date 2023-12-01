@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using V08ClassLibrary.Entity;
+
+namespace V08ClassLibrary.DataAccessLayer
+{
+    public interface ITrainingDal
+    {
+        void Add(ITraining user);
+        void Delete(int id);
+        void Update(ITraining user);
+        ITraining Get(int id);
+        IEnumerable<ITraining> GetAll();
+/*        IEnumerable<ITraining> GetEntityList(DataTable table);
+        ITraining GetEntity(DataRow row);*/
+
+    }
+}
