@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,9 +23,14 @@ namespace V08.BusinessLogic
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<ITraining> GetTrainingList()
+        public string GetTrainingListJson()
         {
-            return _trainingService.GetAll();
+            string trainingListJson = "";
+            foreach (ITraining training in _trainingService.GetAll())
+            {
+                
+            }
+            return trainingListJson;
         }
         public bool Authenticated(int id, string password)
         {

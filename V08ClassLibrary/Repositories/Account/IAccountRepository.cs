@@ -16,5 +16,6 @@ namespace V08ClassLibrary.DataAccessLayer
         void Update(IAccount user);
         IAccount Get(int id);
         IEnumerable<IAccount> GetAll();
+     
     }
 }

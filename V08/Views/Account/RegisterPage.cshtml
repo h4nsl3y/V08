@@ -23,18 +23,18 @@
             }
             $.ajax({
                 type: 'POST',
-                url: "GetData",
-                //contentType: 'application/json',
+                url: "RegisterUser",
                 data: data,
                 success: function (result) {
                     console.log(result);
                     if (result.message == "Success") {
                         console.log("Registering user...", data);
-                        window.location.href = '/Account/Log';
+                        window.location.href = '/Account/LogInPage';
                     }
-                    //window.location.href = 'AccountController/Login';
                     else {
                         console.log("Registration Failed");
+                        var notification = document.getElementById("notificationId")
+                        notification.value ="Registration Failed"
                     }
                 },
                 error: function (error) {
@@ -85,9 +85,10 @@
                     <input type="text" id="EmailId" name="Email">
                 </div>
 
+                <label id="notificationId" class="notification"></label>
+
                 <div class="button-container">
                     <input type="button" value="Sign Up" OnClick="PostData()">
-
                 </div>
             </div>
         </form>

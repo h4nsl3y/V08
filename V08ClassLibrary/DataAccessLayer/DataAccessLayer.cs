@@ -28,18 +28,10 @@ namespace V08ClassLibrary.DatabaseUtil
         }
         public void Connect()
         {
-            try
+            if (_connection == null || _connection.State != ConnectionState.Open)
             {
-                if (_connection == null || _connection.State != ConnectionState.Open)
-                {
-                    _connection = new SqlConnection(_connString);
-                    _connection.Open();
-                }
-            }
-            catch (Exception error)
-            {
-                _logger.Log(error);
-                throw;
+                _connection = new SqlConnection(_connString);
+                _connection.Open();
             }
         }
         public void Disconnect()
@@ -51,41 +43,61 @@ namespace V08ClassLibrary.DatabaseUtil
         }
         public List<T> ExecuteQuery<T>(string query)
         {
-            List<T> objList = new List<T>();
-            Connect();
-            
+            List<T> objectList = new List<T>();
+            try
+            {
+                Connect();
                 SqlCommand cmd = new SqlCommand(query, _connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     T item = MapObject<T>(reader);
-                    objList.Add(item);
+                    objectList.Add(item);
                 }
                 reader.Close();
-            
-            return objList;
+                Disconnect();
+            }
+            catch (Exception error)
+            {
+                Disconnect();
+                _logger.Log(error);
+                throw;
+            }
+
+            return objectList;
         }
         public List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters)
         {
-            List<T> objList = new List<T>();
-            Connect();
-            using (SqlCommand sqlCommand = new SqlCommand(query, _connection))
+            List<T> objectList = new List<T>();
+            try
             {
-                sqlCommand.Parameters.AddRange(parameters.ToArray());
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
+                Connect();
+                using (SqlCommand sqlCommand = new SqlCommand(query, _connection))
                 {
-                    T item = MapObject<T>(reader);
-                    objList.Add(item);
-                }
-                reader.Close();
+                    sqlCommand.Parameters.AddRange(parameters.ToArray());
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        T item = MapObject<T>(reader);
+                        objectList.Add(item);
+                    }
+                    reader.Close();
             }
             Disconnect();
-            return objList;
+            }
+            catch (Exception error)
+            {
+                Disconnect();
+                _logger.Log(error);
+                throw;
+            }
+
+
+            return objectList;
         }
-        public T MapObject<T>(IDataReader reader)
+        private T MapObject<T>(IDataReader reader)
         {
 
             Type type = typeof(T);
@@ -118,7 +130,7 @@ namespace V08ClassLibrary.DatabaseUtil
         }
         public T ConvertFromDBVal<T>(object obj)
         {
-            return (obj == null || obj == DBNull.Value) ?   default(T) : (T)obj;
+            return (obj == null || obj == DBNull.Value) ? default(T) : (T)obj;
         }
     }
 }

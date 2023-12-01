@@ -1,5 +1,6 @@
 ﻿
 
+
 @{
     Layout = null;
 }
@@ -10,7 +11,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/CSS/EmployeeViewStyleSheet.css">
-    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(
+            function () {
+                $.ajax({
+                    type: 'GET',
+                    url: "GetTrainingList",
+                    data: json,
+                    success: function (result) {
+                        console.log(result);
+                        if (result.message == "Success") {
+                            console.log("Sucessfully send list...", data);
+                            //window.location.href = '/EmployeeView';
+                        }
+                        else {
+                            console.log("Failed to load list");
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        )
+    </script>
 </head>
 <body>
     <div class="Account-area">

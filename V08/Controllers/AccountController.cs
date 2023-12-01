@@ -12,20 +12,21 @@ namespace V08.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountBusinessLogic _userBL;
+        private readonly IAccountBusinessLogic _accountBL;
         public AccountController(IAccountBusinessLogic userBL)
         {
-            _userBL = userBL;
-        }
-        public ActionResult EmployeeView()
-        {
-            return View();
+            _accountBL = userBL;
         }
         [HttpPost]
-        public ActionResult GetData(Account acc)
+        public ActionResult AuthenticateUser(Account acc)
         {
-            _userBL.RegisterUser(acc);
-            return Json(new { message = "Success" });
+            int id = acc.EmployeeId;
+            string password = acc.Password;
+            return (_accountBL.Authenticated(id, password)) ? Json(new { message = "Success" }) : Json(new { message = "Fail" });
+        }
+        public ActionResult EmployeeViewPage()
+        {
+            return View();
         }
         public ActionResult Index()
         {
@@ -35,20 +36,22 @@ namespace V08.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult SignIn(Account acc)
-        {
-            int id = acc.EmployeeId;
-            string password = acc.Password;
-            if (_userBL.Authenticated(id, password))
-            {
-                return Json(new { message = "Success" });
-            }
-            else return Json(new { message = "Fail" });
-        }
-        public ActionResult Register()
+
+        public ActionResult RegisterPage()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult RegisterUser(Account acc)
+        {
+            _accountBL.RegisterUser(acc);
+            return Json(new { message = "Success" });
+        }
+/*      [HttpGet]
+ *      public JsonResult GetTrainingList()
+        {
+            return Json(_userBL.GetTrainingListJson);
+        }*/
     }
 }

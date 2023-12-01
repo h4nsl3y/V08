@@ -14,6 +14,5 @@ namespace V08ClassLibrary.DatabaseUtil
         void Disconnect();
         List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters);
         List<T> ExecuteQuery<T>(string query);
-        T MapObject<T>(IDataReader reader);
     }
 }
