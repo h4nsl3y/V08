@@ -11,11 +11,11 @@ namespace V08ClassLibrary.DataAccessLayer
 {
     public interface IAccountRepository
     {
-        void Add(IAccount user);
+        void Add(Account user);
         void Delete(int id);
-        void Update(IAccount user);
-        IAccount Get(int id);
-        IEnumerable<IAccount> GetAll();
+        void Update(Account user);
+        Account Get(int id);
+        IEnumerable<Account> GetAll();
      
     }
 }

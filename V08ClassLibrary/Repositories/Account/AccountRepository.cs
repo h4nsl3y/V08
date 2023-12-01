@@ -17,7 +17,7 @@ namespace V08ClassLibrary.DataAccessLayer
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(IAccount user)
+        public void Add(Account user)
         {
             string query = $"INSERT INTO [USER](FirstName ,OtherName ,LastName ,Nic ,MobileNumber ,Email )" +
                            $"VALUES (@FirstName, @OtherName, @LastName, @Nic, @MobileNumber, @Email)";
@@ -28,22 +28,22 @@ namespace V08ClassLibrary.DataAccessLayer
         {
             throw new NotImplementedException();
         }
-        public IAccount Get(int id)
+        public Account Get(int id)
         {
             string query = $"Select * from userView where EmployeeId  = {id} ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
-        public IEnumerable<IAccount> GetAll()
+        public IEnumerable<Account> GetAll()
         {
             string query = $"Select * from userView ";
             return _dataAccessLayer.ExecuteQuery<Account>(query);
         }
-        public void Update(IAccount user)
+        public void Update(Account user)
         {
             throw new NotImplementedException();
         }
 
-        private List<SqlParameter> GetSqlParameter(IAccount account)
+        private List<SqlParameter> GetSqlParameter(Account account)
         {
             List<SqlParameter> list = new List<SqlParameter>();
 

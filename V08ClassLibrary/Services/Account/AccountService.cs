@@ -15,7 +15,7 @@ namespace V08ClassLibrary.Services
         {
             _accountRepository = accountRepository;
         }
-        public void Add(IAccount acc)
+        public void Add(Account acc)
         {
             _accountRepository.Add(acc);
         }
@@ -23,11 +23,11 @@ namespace V08ClassLibrary.Services
         {
             throw new NotImplementedException();
         }
-        public IAccount Get(int id)
+        public Account Get(int id)
         {
             return _accountRepository.Get(id);
         }
-        public IEnumerable<IAccount> GetAll()
+        public IEnumerable<Account> GetAll()
         {
             return _accountRepository.GetAll();  
         }
@@ -37,7 +37,7 @@ namespace V08ClassLibrary.Services
         }
         public bool Authenticated(int id, string password)
         {
-            IAccount user = _accountRepository.Get(id);
+            Account user = _accountRepository.Get(id);
             return (user == null || user.Password != password) ? false : true;
         }
     }

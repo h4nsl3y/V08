@@ -9,7 +9,7 @@ namespace V08ClassLibrary.Services
 {
     public class EnrollmentService : IEnrollmentService
     {
-        public void Add(IEnrollment enrollment)
+        public void Add(Enrollment enrollment)
         {
             throw new NotImplementedException();
         }
@@ -19,12 +19,12 @@ namespace V08ClassLibrary.Services
             throw new NotImplementedException();
         }
 
-        public IEnrollment Get(int id)
+        public Enrollment Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IEnrollment> GetAll()
+        public IEnumerable<Enrollment> GetAll()
         {
             throw new NotImplementedException();
         }

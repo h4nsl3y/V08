@@ -10,10 +10,10 @@ namespace V08ClassLibrary.Repositories
 {
     public interface IEnrollmentRepository
     {
-        void Add(IEnrollment enrollment);
+        void Add(Enrollment enrollment);
         void Delete(int id);
-        void Update(IAccount user);
-        IEnrollment Get(int id);
-        IEnumerable<IEnrollment> GetAll();
+        void Update(Account user);
+        Enrollment Get(int id);
+        IEnumerable<Enrollment> GetAll();
     }
 }

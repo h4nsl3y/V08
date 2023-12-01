@@ -9,10 +9,10 @@ namespace V08ClassLibrary.Services
 {
     public interface ITrainingService
     {
-        void Add(ITraining training);
+        void Add(Training training);
         void Delete(int id);
         void Update(int id);
-        ITraining Get(int id);
-        IEnumerable<ITraining> GetAll();
+        Training Get(int id);
+        IEnumerable<Training> GetAll();
     }
 }

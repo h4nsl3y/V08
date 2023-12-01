@@ -16,7 +16,7 @@ namespace V08ClassLibrary.Repositories
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(IEnrollment enrollment)
+        public void Add(Enrollment enrollment)
         {
             string query = $"INSERT INTO ENROLLMENT(EnrollmentId ,EmployeeId ,TrainingId ,[Status] ,SubmissionDate)" +
                           $"VALUES (@EnrollmentId ,@EmployeeId ,@TrainingId ,@Status ,@SubmissionDate)";
@@ -27,21 +27,21 @@ namespace V08ClassLibrary.Repositories
         {
             throw new NotImplementedException();
         }
-        public IEnrollment Get(int id)
+        public Enrollment Get(int id)
         {
             string query = $"SELECT * FROM ENROLLMENT WHERE ENROLLMENTID = {id}";
             return _dataAccessLayer.ExecuteQuery<Enrollment>(query).First();
         }
-        public IEnumerable<IEnrollment> GetAll()
+        public IEnumerable<Enrollment> GetAll()
         {
             string query = $"SELECT * FROM ENROLLMENT";
             return _dataAccessLayer.ExecuteQuery<Enrollment>(query);
         }
-        public void Update(IAccount user)
+        public void Update(Account user)
         {
             throw new NotImplementedException();
         }
-        private List<SqlParameter> GetSqlParameter(IEnrollment enrollment)
+        private List<SqlParameter> GetSqlParameter(Enrollment enrollment)
         {
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@EnrollmentId", enrollment.EnrollmentId));

@@ -51,16 +51,14 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Repositories\Enrollment\EnrollmentRepository.cs" />
     <Compile Include="Repositories\Enrollment\IEnrollmentRepository.cs" />
+    <Compile Include="Repositories\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Repositories\Training\ITrainingRepository.cs" />
     <Compile Include="Repositories\Account\IAccountRepository.cs" />
     <Compile Include="Repositories\Training\TrainingRepository.cs" />
     <Compile Include="Repositories\Account\AccountRepository.cs" />
     <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
     <Compile Include="DataAccessLayer\IDataAcessLayer.cs" />
-    <Compile Include="Entity\IEnrollment.cs" />
     <Compile Include="Entity\Enrollment.cs" />
-    <Compile Include="Entity\IAccount.cs" />
-    <Compile Include="Entity\ITraining.cs" />
     <Compile Include="Entity\Training.cs" />
     <Compile Include="Entity\Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

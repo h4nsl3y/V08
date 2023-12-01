@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace V08ClassLibrary.Entity
 {
-    public class Account : IAccount
+    public class Account 
     {
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }

@@ -17,7 +17,7 @@ namespace V08ClassLibrary.DataAccessLayer
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(ITraining training)
+        public void Add(Training training)
         {
         string query = $"INSERT INTO TRAINING(title ,departmentId ,prerequisite ," +
                                               $"seatNumber ,deadline ,startDate," +
@@ -32,21 +32,21 @@ namespace V08ClassLibrary.DataAccessLayer
         {
             throw new NotImplementedException();
         }
-        public ITraining Get(int id)
+        public Training Get(int id)
         {
             string query = $"Select * from trainingView where trainingID ={id}";
             return _dataAccessLayer.ExecuteQuery<Training>(query).First();
         }
-        public IEnumerable<ITraining> GetAll()
+        public IEnumerable<Training> GetAll()
         {
             string query = $"Select * from trainingView ";
             return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
-        public void Update(ITraining user)
+        public void Update(Training user)
         {
             throw new NotImplementedException();
         }
-        private List<SqlParameter> GetSqlParameter(ITraining training)
+        private List<SqlParameter> GetSqlParameter(Training training)
         {
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@TrainingId", training.TrainingId));

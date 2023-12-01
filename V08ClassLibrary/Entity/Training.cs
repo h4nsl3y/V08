@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace V08ClassLibrary.Entity
 {
-    public class Training : ITraining
+    public class Training 
     {
         public int TrainingId { get; set; }
         public string Title { get; set; }

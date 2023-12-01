@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace V08ClassLibrary.Entity
 
 {
-    public class Enrollment : IEnrollment
+    public class Enrollment 
     {
         public int EnrollmentId { get; set; }
         public int EmployeeId { get; set; }

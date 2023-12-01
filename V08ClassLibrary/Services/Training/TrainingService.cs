@@ -15,7 +15,7 @@ namespace V08ClassLibrary.Services
         {
             _trainingRepository = trainingRepository;
         }
-        public void Add(ITraining training)
+        public void Add(Training training)
         {
             _trainingRepository.Add(training);
         }
@@ -25,12 +25,12 @@ namespace V08ClassLibrary.Services
             throw new NotImplementedException();
         }
 
-        public ITraining Get(int id)
+        public Training Get(int id)
         {
             return _trainingRepository.Get(id);
         }
 
-        public IEnumerable<ITraining> GetAll()
+        public IEnumerable<Training> GetAll()
         {
             return _trainingRepository.GetAll();
         }
