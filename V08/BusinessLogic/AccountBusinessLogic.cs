@@ -22,11 +22,7 @@ namespace V08.BusinessLogic
         public bool LogIn(int id, string password)
         {
             IAccount user = _userService.Get(id);
-            if (user == null || user.Password != password) 
-            {
-                return false;
-            }
-            return true;
+            return (user == null || user.Password != password) ? false: true;
         }
         public IEnumerable<ITraining> GetTrainingList() 
         {

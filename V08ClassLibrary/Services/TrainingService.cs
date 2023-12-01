@@ -10,14 +10,14 @@ namespace V08ClassLibrary.Services
 {
     public class TrainingService : ITrainingService
     {
-        private readonly ITrainingDal _trainingDal;
-        public TrainingService(ITrainingDal trainingDal)
+        private readonly ITrainingRepository _trainingRepository;
+        public TrainingService(ITrainingRepository trainingRepository)
         {
-            _trainingDal = trainingDal;
+            _trainingRepository = trainingRepository;
         }
         public void Add(ITraining training)
         {
-            _trainingDal.Add(training);
+            _trainingRepository.Add(training);
         }
 
         public void Delete(int id)
@@ -27,12 +27,12 @@ namespace V08ClassLibrary.Services
 
         public ITraining Get(int id)
         {
-            return _trainingDal.Get(id);
+            return _trainingRepository.Get(id);
         }
 
         public IEnumerable<ITraining> GetAll()
         {
-            return _trainingDal.GetAll();
+            return _trainingRepository.GetAll();
         }
 
         public void Update(int id)

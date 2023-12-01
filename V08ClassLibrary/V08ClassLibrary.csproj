@@ -48,12 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DataAccessLayer\ITrainingDal.cs" />
-    <Compile Include="DataAccessLayer\IAccountDal.cs" />
-    <Compile Include="DataAccessLayer\TrainingDal.cs" />
-    <Compile Include="DataAccessLayer\AccountDal.cs" />
-    <Compile Include="DatabaseUtil\DbUtils.cs" />
-    <Compile Include="DatabaseUtil\IDbUtils.cs" />
+    <Compile Include="Repositories\ITrainingRepository.cs" />
+    <Compile Include="Repositories\IAccountRepository.cs" />
+    <Compile Include="Repositories\TrainingRepository.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
+    <Compile Include="DataAccessLayer\IDataAcessLayer.cs" />
     <Compile Include="Entity\IEnrollment.cs" />
     <Compile Include="Entity\Enrollment.cs" />
     <Compile Include="Entity\IAccount.cs" />

@@ -10,10 +10,10 @@ using V08ClassLibrary.Entity;
 
 namespace V08ClassLibrary.DataAccessLayer
 {
-    public class TrainingDal : ITrainingDal
+    public class TrainingRepository : ITrainingRepository
     {
-        private readonly IDbUtils _dbUtils;
-        public TrainingDal(IDbUtils dbUtils)
+        private readonly IDataAcessLayer _dbUtils;
+        public TrainingRepository(IDataAcessLayer dbUtils)
         {
             _dbUtils = dbUtils;
         }

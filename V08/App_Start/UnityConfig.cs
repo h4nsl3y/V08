@@ -59,10 +59,10 @@ namespace V08
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ITrainingService, TrainingService>();
 
-            container.RegisterType<IAccountDal, AccountDal>();
-            container.RegisterType<ITrainingDal, TrainingDal>();
+            container.RegisterType<IAccountRepository, AccountRepository>();
+            container.RegisterType<ITrainingRepository, TrainingRepository>();
 
-            container.RegisterType<IDbUtils, DbUtils>();
+            container.RegisterType<IDataAcessLayer, DataAccessLayer>();
             container.RegisterType<IAccountBusinessLogic,AccountBusinessLogic>();
 
 

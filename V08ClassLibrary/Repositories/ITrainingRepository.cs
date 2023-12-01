@@ -8,7 +8,7 @@ using V08ClassLibrary.Entity;
 
 namespace V08ClassLibrary.DataAccessLayer
 {
-    public interface ITrainingDal
+    public interface ITrainingRepository
     {
         void Add(ITraining user);
         void Delete(int id);

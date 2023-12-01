@@ -10,16 +10,17 @@ using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Configuration;
 using System.Reflection;
+using System.Collections;
+using System.Diagnostics.Eventing.Reader;
 
 namespace V08ClassLibrary.DatabaseUtil
 {
-    public class DbUtils : IDbUtils
+    public class DataAccessLayer : IDataAcessLayer
     {
         private readonly string _connString;
         private SqlConnection _conn;
-        public List<Dictionary<string, string>> dict;
 
-        public DbUtils()
+        public DataAccessLayer()
         {
             _connString = ConfigurationManager.AppSettings["ConnectionString"];
         }
@@ -34,9 +35,10 @@ namespace V08ClassLibrary.DatabaseUtil
                     _conn.Open();
                 }
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
-                Console.WriteLine("Unable to find the connection string " + ex.Message);
+                // TO DO : create a logger
+                throw;
             }
         }
         public void Disconnect()
@@ -46,28 +48,6 @@ namespace V08ClassLibrary.DatabaseUtil
                 _conn.Close();
             }
         }
-/*        public DataTable GetData(string query)
-        {
-            DataTable dataTable = new DataTable();
-            Connect();
-            SqlDataAdapter adapter = new SqlDataAdapter(query,_conn);  
-            adapter.Fill(dataTable);
-            adapter.Dispose();
-            return dataTable;
-        }
-        public DataTable GetData(string sql, List<SqlParameter> parameters)
-        {
-            DataTable dataTable = new DataTable();
-            Connect();
-            using (_conn)
-            {
-                SqlCommand cmd = new SqlCommand(sql,_conn);
-                cmd.Parameters.AddRange(parameters.ToArray());
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dataTable);
-                return dataTable;
-            }
-        }*/
 
         public List<T> ExecuteQuery<T>(string query)
         {
@@ -79,7 +59,7 @@ namespace V08ClassLibrary.DatabaseUtil
 
                 while (reader.Read())
                 {
-                    T item = MapData<T>(reader);
+                    T item = MapObject<T>(reader);
                     objList.Add(item);
                 }
                 reader.Close();
@@ -91,43 +71,40 @@ namespace V08ClassLibrary.DatabaseUtil
         {
             List<T> objList = new List<T>();
             Connect();
-            using (_conn)
+            using (SqlCommand sqlCommand = new SqlCommand(query, _conn))
             {
-                SqlCommand cmd = new SqlCommand(query, _conn);
-                cmd.Parameters.AddRange(parameters.ToArray());
-                SqlDataReader reader = cmd.ExecuteReader();
+                sqlCommand.Parameters.AddRange(parameters.ToArray());
+                SqlDataReader reader = sqlCommand.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    T item = MapData<T>(reader);
+                    T item = MapObject<T>(reader);
                     objList.Add(item);
                 }
                 reader.Close();
             }
+            Disconnect();
             return objList;
         }
 
-        public T MapData<T>(IDataReader reader)
+        public T MapObject<T>(IDataReader reader)
         {
             Type type = typeof(T);
             T obj = Activator.CreateInstance<T>();
+            string propertyName;
+            PropertyInfo[] properties;
 
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                string propertyName = reader.GetName(i).ToString();
+                propertyName = reader.GetName(i).ToString();
                 var value = reader[i];
                 
-                /*                PropertyInfo property = type.GetProperty(propertyName);
-                                if (property != null && value != DBNull.Value)
-                                {
-                                    property.SetValue(obj, value, null);
-                                }*/
-                PropertyInfo[] properties = type.GetProperties();
+                properties = type.GetProperties();
                 foreach(PropertyInfo property in properties)
                 {
                     if (property.Name.ToLower() == propertyName.ToLower())
                     {
-                        if (property.PropertyType == typeof(string))
+                        if(property.PropertyType == typeof(string))
                         {
                             property.SetValue(obj, ConvertFromDBVal<string>(value), null);
                         }
@@ -143,15 +120,7 @@ namespace V08ClassLibrary.DatabaseUtil
 
         public T ConvertFromDBVal<T>(object obj)
         {
-            if (obj == null || obj == DBNull.Value)
-            {
-                return default(T); 
-            }
-            else
-            {
-                return (T)obj;
-            }
+            return (obj == null || obj == DBNull.Value) ?   default(T) : (T)obj;
         }
-
     }
 }

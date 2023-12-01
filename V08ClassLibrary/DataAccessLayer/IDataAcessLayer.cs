@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace V08ClassLibrary.DatabaseUtil
 {
-    public interface IDbUtils
+    public interface IDataAcessLayer
     {
         void Connect();
         void Disconnect();
@@ -16,6 +16,6 @@ namespace V08ClassLibrary.DatabaseUtil
                 DataTable GetData(string sql, List<SqlParameter> parameters);*/
         List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters);
         List<T> ExecuteQuery<T>(string query);
-        T MapData<T>(IDataReader reader);
+        T MapObject<T>(IDataReader reader);
     }
 }

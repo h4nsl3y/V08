@@ -10,14 +10,14 @@ namespace V08ClassLibrary.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountDal _accDal;
-        public AccountService(IAccountDal accDal)
+        private readonly IAccountRepository _accountRepository;
+        public AccountService(IAccountRepository accountRepository)
         {
-            _accDal = accDal;
+            _accountRepository = accountRepository;
         }
         public void Add(IAccount acc)
         {
-            _accDal.Add(acc);
+            _accountRepository.Add(acc);
         }
 
         public void Delete(int id)
@@ -27,17 +27,17 @@ namespace V08ClassLibrary.Services
 
         public IAccount Get(int id)
         {
-            return _accDal.Get(id);
+            return _accountRepository.Get(id);
         }
 
         public IEnumerable<IAccount> GetAll()
         {
-            return _accDal.GetAll();  
+            return _accountRepository.GetAll();  
         }
 
         public string tester()
         {
-            return "User service  - all ok" + _accDal.tester();
+            return "User service  - all ok" + _accountRepository.tester();
         }
 
         public void Update(int id)

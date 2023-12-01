@@ -8,7 +8,7 @@ using V08ClassLibrary.Entity;
 
 namespace V08ClassLibrary.DataAccessLayer
 {
-    public interface IAccountDal
+    public interface IAccountRepository
     {
         void Add(IAccount user);
         void Delete(int id);
