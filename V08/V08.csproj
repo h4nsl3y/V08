@@ -188,7 +188,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\CSS\EmployeeViewStyleSheet.css" />
+    <Content Include="Content\CSS\employeeViewStyleSheet.css" />
     <Content Include="Content\CSS\FormStyleSheet.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -204,7 +204,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
-    <Content Include="Scripts\JavaScript\GenerateTrainingList.js" />
+    <Content Include="Scripts\JavaScript\EmployeeViewScript.js" />
     <Content Include="Scripts\JavaScript\SignInUser.js" />
     <Content Include="Scripts\JavaScript\RegisterUser.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />

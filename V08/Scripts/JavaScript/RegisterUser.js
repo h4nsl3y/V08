@@ -15,7 +15,7 @@ function PostData() {
         FirstName: document.getElementById("FirstNameId").value,
         OtherName: document.getElementById("OtherNameId").value,
         LastName: document.getElementById("LastNameId").value,
-        NationalIditificationNumber: document.getElementById("NationalIdentificationNumberId").value,
+        NationalIdentificationNumber: document.getElementById("NationalIdentificationNumberId").value,
         MobileNumber: document.getElementById("MobileNumberId").value,
         Email: document.getElementById("EmailId").value
     }
@@ -24,12 +24,12 @@ function PostData() {
         url: "RegisterUser",
         data: userDetails,
         success: function (result) {
-            console.log(result);
             if (result.message == "Success") {
-                window.location.href = '/Account/LogInPage';
+                window.location.href = '/Account/EmployeeViewPage';
             }
             else {
                 document.getElementById("notificationId").innerHTML = "Registration Failed"
+                alert(result.message)
             }
         },
         error: function (error) {

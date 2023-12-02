@@ -27,10 +27,24 @@ namespace V08ClassLibrary.DataAccessLayer
             List<SqlParameter> parameters = GetSqlParameter(account);
             _dataAccessLayer.ExecuteQuery<Account>(query, parameters);
         }
+        public bool Authenticated(int id, string password)
+        {
+            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}' ; ";
+            return _dataAccessLayer.ExecuteQuery<Account>(query).Count() > 0;
+        }
         public void Delete(int id)
         {
             string query = $"DELETE FROM [USER] WHERE EMPLOYEEID  = {id} ; ";
             _dataAccessLayer.ExecuteQuery<Account>(query);
+        }
+        public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
+        {
+            string query = $"SELECT * FROM USERVIEW " +
+                           $"WHERE EMAIL = '{email}' " +
+                           $"OR NATIONALIDENTIFICATIONNUMBER = '{NationalIdentificationNumber}' " +
+                           $"OR MOBILENUMBER = {mobileNumber} ; ";
+
+            return _dataAccessLayer.ExecuteQuery<Account>(query).Count > 0;
         }
         public Account Get(int id)
         {
@@ -42,6 +56,11 @@ namespace V08ClassLibrary.DataAccessLayer
             string query = $"SELECT * FROM USERVIEW ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query);
         }
+        public Account GetLast()
+        {
+            string query = $"SELECT TOP 1 * FROM USERVIEW ORDER BY EMPLOYEEID DESC; ";
+            return _dataAccessLayer.ExecuteQuery<Account>(query).First();
+        }
         public void Update(Account account)
         {
             string query = $"UPDATE [USER]" +
@@ -51,16 +70,11 @@ namespace V08ClassLibrary.DataAccessLayer
             List<SqlParameter> parameters = GetSqlParameter(account);
             _dataAccessLayer.ExecuteQuery<Account>(query, parameters);
         }
-        public bool Authenticated(int id, string password)
-        {
-            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}' ; ";
-            return  _dataAccessLayer.ExecuteQuery<Account>(query).Count()  > 0;
-        }
         private List<SqlParameter> GetSqlParameter(Account account)
         {
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@FirstName", account.FirstName));
-            list.Add(new SqlParameter("@OtherName", account.OtherName));
+            list.Add(new SqlParameter("@OtherName", account.OtherName ?? (object)DBNull.Value));
             list.Add(new SqlParameter("@LastName", account.LastName));
             list.Add(new SqlParameter("@NationalIdentificationNumber", account.NationalIdentificationNumber));
             list.Add(new SqlParameter("@MobileNumber", account.MobileNumber));

@@ -1,53 +1,55 @@
-body{
+body {
     font-family: 'Trebuchet MS', sans-serif;
     background-color: rgb(240, 240, 240);
 }
-
-.Account-area{
+.account-area {
     background-color: white;
     height: 80px;
     width: 80%;
     min-height: 100px;
     min-width: 800px;
-    margin : 20px 10%;
+    margin: 20px 10%;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 10% 80% 10%;
 }
-.account-img-container{
+.account-img-container {
+    background-color: black;
     text-align: center;
 }
-
-.Account-img{
-    position : relative;
+.account-img {
+    position: relative;
     background-color: rgb(57,130,232);
     color: black;
     border-radius: 50%;
     text-align: center;
     padding: 25px 25px;
-    top : 40px;
+    top: 40px;
     font-size: 25px;
 }
-
-.Training-area{
+.account-fullname {
+    text-align: center;
+    margin: 25px 0px;
+}
+.log-out-container {
+    margin: 25px 0px;
+}
+.training-area {
     background-color: white;
     height: 80vh;
     width: 80%;
     min-height: 100px;
     min-width: 800px;
-    margin : 20px 10%;
+    margin: 20px 10%;
 }
-
-.container-title{
-    margin : 20px 20px;
+.container-title {
+    margin: 20px 20px;
 }
-
-.container-list{
+.container-list {
     height: 60vh;
     width: 90%;
     margin: 0px 5%;
 }
-
-.list-item{
+.list-item {
     background-color: white;
     height: 80px;
     width: 100%;
@@ -56,22 +58,18 @@ body{
     display: grid;
     grid-template-rows: 30% 70%;
 }
-.first-row{
+.first-row {
     display: grid;
     grid-template-columns: 85% 15%;
 }
-.training-department{
+.training-department {
     font-size: 13px;
     margin: 5px;
 }
-.training-title{
+.training-title {
     margin: 0px 10px;
 }
-.small-description{
+.small-description {
     font-size: 13px;
     margin: 0px 30px;
-}
-.hidden {
-    visibility: hidden;
-    display: none;
 }

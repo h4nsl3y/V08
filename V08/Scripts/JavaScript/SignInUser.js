@@ -17,7 +17,6 @@ function PostData() {
         url: "AuthenticateUser",
         data: data,
         success: function (result) {
-            console.log(result);
             if (result.message == "Success") {
                 window.location.href = 'EmployeeViewPage';
             }

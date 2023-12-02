@@ -12,7 +12,9 @@ namespace V08.BusinessLogic
         bool AccountExist();
         IEnumerable<Training> GetTrainingList();
         bool Authenticated(int id, string password);
-        bool Duplicated(string field, string value);
+        bool Duplicated(string email,string NationalIdentificationNumber , int mobileNumber);
+        Account GetAccount(int id);
+        Account GetLastRegisteredAccount();
         void RegisterUser(Account account);
     }
 }

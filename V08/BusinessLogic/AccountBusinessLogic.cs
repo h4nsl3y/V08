@@ -31,16 +31,22 @@ namespace V08.BusinessLogic
         {
             return _accountService.Authenticated(id, password);
         }
-        public bool Duplicated(string field, string value)
+        public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
         {
-            throw new NotImplementedException();
+            return _accountService.Duplicated(email, NationalIdentificationNumber, mobileNumber);
+        }
+        public Account GetAccount(int id)
+        {
+            return _accountService.Get(id);
         }
         public void RegisterUser(Account account)
         {
             _accountService.Add(account);
         }
 
-
-
+        public Account GetLastRegisteredAccount()
+        {
+            return _accountService.GetLast();
+        }
     }
 }

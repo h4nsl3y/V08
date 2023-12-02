@@ -13,9 +13,10 @@ namespace V08ClassLibrary.Services
         void Add(Account user);
         bool Authenticated(int id, string password);
         void Delete(int id);
+        bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber);
         void Update(int id);
         Account Get(int id);
+        Account GetLast();
         IEnumerable<Account> GetAll();
-       
     }
 }

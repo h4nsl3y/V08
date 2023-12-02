@@ -15,9 +15,9 @@ namespace V08ClassLibrary.Services
         {
             _accountRepository = accountRepository;
         }
-        public void Add(Account acc)
+        public void Add(Account account)
         {
-            _accountRepository.Add(acc);
+            _accountRepository.Add(account);
         }
         public bool Authenticated(int id, string password)
         {
@@ -25,8 +25,14 @@ namespace V08ClassLibrary.Services
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _accountRepository.Delete(id);
         }
+
+        public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
+        {
+            return _accountRepository.Duplicated(email, NationalIdentificationNumber, mobileNumber);
+        }
+
         public Account Get(int id)
         {
             return _accountRepository.Get(id);
@@ -35,6 +41,12 @@ namespace V08ClassLibrary.Services
         {
             return _accountRepository.GetAll();  
         }
+
+        public Account GetLast()
+        {
+            return _accountRepository.GetLast();
+        }
+
         public void Update(int id)
         {
             throw new NotImplementedException();

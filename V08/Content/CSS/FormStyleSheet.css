@@ -2,7 +2,6 @@ body{
     font-family: 'Trebuchet MS', sans-serif;
     background-color: rgb(240, 240, 240);
 }
-    
 .area{
     width : 25%;
     min-width: 500px;
@@ -16,18 +15,15 @@ form{
     margin: 100px 0px;
     border-radius: 20px;
 }
-
 .image-container{
     background-color: blue;
     width: 60%;
     height : 150px;
     margin: 40px 20%;
 }
-
 h2{
     text-align: center;
 }
-
 .input-field{
     display: grid;
     grid-template-rows: 1 1;
