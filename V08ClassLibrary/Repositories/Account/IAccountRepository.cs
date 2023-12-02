@@ -11,9 +11,9 @@ namespace V08ClassLibrary.DataAccessLayer
 {
     public interface IAccountRepository
     {
-        void Add(Account user);
+        void Add(Account account);
         void Delete(int id);
-        void Update(Account user);
+        void Update(Account account);
         Account Get(int id);
         bool Authenticated(int id, string password);
         IEnumerable<Account> GetAll();

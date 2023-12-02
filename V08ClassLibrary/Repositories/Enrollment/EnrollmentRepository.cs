@@ -20,34 +20,34 @@ namespace V08ClassLibrary.Repositories
         public void Add(Enrollment enrollment)
         {
             string query = $"INSERT INTO ENROLLMENT(EnrollmentId ,EmployeeId ,TrainingId ,[Status] ,SubmissionDate)" +
-                          $"VALUES (@EnrollmentId ,@EmployeeId ,@TrainingId ,@Status ,@SubmissionDate)";
+                           $"VALUES (@EnrollmentId ,@EmployeeId ,@TrainingId ,@Status ,@SubmissionDate) ; ";
             List<SqlParameter> parameters = GetSqlParameter(enrollment);
             _dataAccessLayer.ExecuteQuery<Enrollment>(query, parameters);
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = $"DELETE FROM ENROLLMENT WHERE EMPLOYEEID  = {id} ; ";
+            _dataAccessLayer.ExecuteQuery<Account>(query);
         }
         public Enrollment Get(int id)
         {
-            string query = $"SELECT * FROM ENROLLMENT WHERE ENROLLMENTID = {id}";
+            string query = $"SELECT * FROM ENROLLMENT WHERE ENROLLMENTID = {id} ; ";
             return _dataAccessLayer.ExecuteQuery<Enrollment>(query).First();
         }
         public IEnumerable<Enrollment> GetAll()
         {
-            string query = $"SELECT * FROM ENROLLMENT";
+            string query = $"SELECT * FROM ENROLLMENT ; ";
             return _dataAccessLayer.ExecuteQuery<Enrollment>(query);
         }
-        public void Update(Account user)
+        public void Update(Enrollment enrollment)
         {
-            throw new NotImplementedException();
+            string query =$"UPDATE  ENROLLMENT" +
+                          $"SET EmployeeId = @EmployeeId, TrainingId = @TrainingId, " +
+                          $"[Status] = @Status , SubmissionDate = @SubmissionDate" +
+                          $"WHERE EnrollmentId = @EnrollmentId, ; ";
+            List<SqlParameter> parameters = GetSqlParameter(enrollment);
+            _dataAccessLayer.ExecuteQuery<Enrollment>(query, parameters);
         }
-
-        public void Update(Enrollment item)
-        {
-            throw new NotImplementedException();
-        }
-
         private List<SqlParameter> GetSqlParameter(Enrollment enrollment)
         {
             List<SqlParameter> list = new List<SqlParameter>();

@@ -12,7 +12,7 @@ namespace V08ClassLibrary.Repositories
     {
         void Add(Enrollment enrollment);
         void Delete(int id);
-        void Update(Account user);
+        void Update(Enrollment enrollment);
         Enrollment Get(int id);
         IEnumerable<Enrollment> GetAll();
     }

@@ -22,11 +22,11 @@ function PostData() {
                 window.location.href = 'EmployeeViewPage';
             }
             else {
-                document.getElementById("notificationId").innerHTML = "Signing in Failed"
+                document.getElementById("notificationId").innerHTML = "Signing in Failed";
             }
         },
         error: function (error) {
-            console.log(error);
+            document.getElementById("notificationId").innerHTML = "Some Errors has been encountered";
         }
     });
 }

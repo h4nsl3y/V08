@@ -24,27 +24,34 @@ namespace V08ClassLibrary.DataAccessLayer
                                               $"endDate,shortDescription, LongDescription )" +
                                               $"VALUES (@TrainingId, @Title, @DepartmentId, " +
                                               $"@Prerequisite, @SeatNumber, @Deadline" +
-                                              $"@ShortDescription, @LongDescription)";
+                                              $"@ShortDescription, @LongDescription) ; ";
             List<SqlParameter> parameters = GetSqlParameter(training);
             _dataAccessLayer.ExecuteQuery<Training>(query, parameters);
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = $"DELETE FROM TRAINING WHERE TRAININGID = {id} ; ";
+            _dataAccessLayer.ExecuteQuery<Training>(query).First();
         }
         public Training Get(int id)
         {
-            string query = $"Select * from trainingView where trainingID ={id}";
+            string query = $"SELECT * FROM TRAININGVIEW WHERE TRAININGID ={id} ; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query).First();
         }
         public IEnumerable<Training> GetAll()
         {
-            string query = $"Select * from trainingView ";
+            string query = $"SELECT * FROM TRAININGVIEW ; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
-        public void Update(Training user)
+        public void Update(Training training)
         {
-            throw new NotImplementedException();
+            string query = $"UPDATE TRAINING " +
+                           $"set title = @Title ,departmentId = @DepartmentId ,prerequisite = @Prerequisite ," +
+                           $"seatNumber = @SeatNumber, deadline = @Deadline, startDate = @StartDate ," +
+                           $"endDate = @EndDate ,shortDescription = @ShortDescription, LongDescription = @LongDescription " +
+                           $"WHERE TRAININGID = @TrainingId ; ";
+            List<SqlParameter> parameters = GetSqlParameter(training);
+            _dataAccessLayer.ExecuteQuery<Training>(query, parameters);
         }
         private List<SqlParameter> GetSqlParameter(Training training)
         {

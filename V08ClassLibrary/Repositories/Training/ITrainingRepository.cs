@@ -11,9 +11,9 @@ namespace V08ClassLibrary.DataAccessLayer
 {
     public interface ITrainingRepository
     {
-        void Add(Training user);
+        void Add(Training training);
         void Delete(int id);
-        void Update(Training user);
+        void Update(Training training);
         Training Get(int id);
         IEnumerable<Training> GetAll();
     }

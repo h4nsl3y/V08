@@ -33,7 +33,7 @@ function PostData() {
             }
         },
         error: function (error) {
-            console.log(error);
+            document.getElementById("notificationId").innerHTML = "Some Errors has been encountered";
         }
     });
 }
