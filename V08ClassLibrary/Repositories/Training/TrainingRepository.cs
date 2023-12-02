@@ -51,7 +51,7 @@ namespace V08ClassLibrary.DataAccessLayer
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@TrainingId", training.TrainingId));
             list.Add(new SqlParameter("@Title", training.Title));
-            list.Add(new SqlParameter("@DepartmentId", training.DepartmentId));
+            list.Add(new SqlParameter("@DepartmentId", training.Department));
             list.Add(new SqlParameter("@Prerequisite", training.Prerequisite));
             list.Add(new SqlParameter("@SeatNumber", training.SeatNumber));
             list.Add(new SqlParameter("@Deadline", training.Deadline));

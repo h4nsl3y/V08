@@ -57,7 +57,7 @@ namespace V08ClassLibrary.DataAccessLayer
             list.Add(new SqlParameter("@FirstName", account.FirstName));
             list.Add(new SqlParameter("@OtherName", account.OtherName));
             list.Add(new SqlParameter("@LastName", account.LastName));
-            list.Add(new SqlParameter("@Nic", account.Nic));
+            list.Add(new SqlParameter("@Nic", account.NationalIditificationNumber));
             list.Add(new SqlParameter("@MobileNumber", account.MobileNumber));
             list.Add(new SqlParameter("@Email", account.Email));
 

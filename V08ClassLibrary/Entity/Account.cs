@@ -12,13 +12,13 @@ namespace V08ClassLibrary.Entity
         public string FirstName { get; set; }
         public string OtherName { get; set; }
         public string LastName { get; set; }
-        public string Nic { get; set; }
+        public string NationalIditificationNumber { get; set; }
         public int MobileNumber { get; set; }
         public string Email { get; set; }
-        public int? DepartmentId { get; set; }
+        public string Department { get; set; }
         public int? ManagerId { get; set; }
         public string Password { get; set; }
-        public int RoleId { get; set; }
+        public string Role { get; set; }
 
     }
 }
