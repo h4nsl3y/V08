@@ -4,108 +4,48 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/CSS/FormStyleSheet.css">
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js"></script>
-    <script>
-
-        function CheckTextField() {
-            var notificationText = "Field(s) ";
-            var flag = true;
-            if (document.getElementById("FirstNameId").value == "") { notificationText = notificationText.concat("Firstname ,");  flag = false};
-            if (document.getElementById("LastNameId").value == "") { notificationText = notificationText.concat("LastName ,"); flag = false };
-            if (document.getElementById("NicId").value == "") { notificationText = notificationText.concat("NIC ,"); flag = false };
-            if (document.getElementById("MobileNumberId").value == "") { notificationText = notificationText.concat("mobileNumber ,"); flag = false };
-            if (document.getElementById("EmailId").value == "") { notificationText = notificationText.concat("email ,"); flag = false };
-
-            notificationText = notificationText.concat("are mandatory")
-            if (flag) { PostData() }
-            else { document.getElementById("notificationId").innerHTML = notificationText; }
-            
-        }
-
-        function PostData() {
-            var data = {
-                FirstName: document.getElementById("FirstNameId").value,
-                OtherName: document.getElementById("OtherNameId").value,
-                LastName: document.getElementById("LastNameId").value,
-                Nic: document.getElementById("NicId").value,
-                MobileNumber: document.getElementById("MobileNumberId").value,
-                Email: document.getElementById("EmailId").value
-            }
-            $.ajax({
-                type: 'POST',
-                url: "RegisterUser",
-                data: data,
-                success: function (result) {
-                    console.log(result);
-                    if (result.message == "Success") {
-                        console.log("Registering user...", data);
-                        window.location.href = '/Account/LogInPage';
-                    }
-                    else {
-                        console.log("Registration Failed");
-                        var notification = document.getElementById("notificationId")
-                        notification.innerHTML ="Registration Failed"
-                    }
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-    </script>
+    <script src="~/Scripts/JavaScript/RegisterUser.js"></script>
 </head>
 <body>
-
     <div class="area">
         <form>
             <div class="image-container">
-
+                <!--Insert Image-->
             </div>
-
             <h2>Registration</h2>
-
             <div class="input-container">
                 <div class="input-field">
                     <label for="FirstName :">FirstName*</label>
                     <input type="text" id="FirstNameId" name="FirstName" required>
                 </div>
-
                 <div class="input-field">
                     <label for="OtherName :">OtherName</label>
                     <input type="text" id="OtherNameId" name="OtherName">
                 </div>
-
                 <div class="input-field">
                     <label for="LastName :">LaststName*</label>
                     <input type="text" id="LastNameId" name="LastName" required>
                 </div>
-
                 <div class="input-field">
-                    <label for="Nic :">Nic*</label>
-                    <input type="text" id="NicId" name="Nic" required>
+                    <label for="Nic :">National Identification Number *</label>
+                    <input type="text" id="NationalIdentificationNumberId" name="Nic" required>
                 </div>
-
                 <div class="input-field">
                     <label for="MobileNumber :">MobileNumber*</label>
                     <input type="number" id="MobileNumberId" name="MobileNumber" required>
                 </div>
-
                 <div class="input-field">
                     <label for="Email :">Email*</label>
                     <input type="text" id="EmailId" name="Email" required>
                 </div>
-
                 <div class="notification">
                     <label id="notificationId"></label>
                 </div>
-
                 <div class="button-container">
                     <input type="button" value="Sign Up" OnClick="CheckTextField()">
                 </div>

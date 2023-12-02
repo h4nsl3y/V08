@@ -9,63 +9,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/CSS/FormStyleSheet.css">
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        function CheckTextField() {
-            var notificationText = "Field(s) ";
-            var flag = true;
-            if (document.getElementById("EmployeeId").value == "") { notificationText = notificationText.concat("Employee ,"); flag = false };
-            if (document.getElementById("PasswordId").value == "") { notificationText = notificationText.concat("Password ,"); flag = false };
-            notificationText = notificationText.concat("are mandatory")
-            if (flag) { PostData() }
-            else { document.getElementById("notificationId").innerHTML = notificationText; }
-        }
-
-        function PostData() {
-            var data = {
-                EmployeeId: document.getElementById("EmployeeId").value,
-                Password: document.getElementById("PasswordId").value
-            }
-            $.ajax({
-                type: 'POST',
-                url: "AuthenticateUser",
-                data: data,
-                success: function (result) {
-                    console.log(result);
-                    if (result.message == "Success") {
-                        console.log("Sign in sucessfully...", data);
-                        window.location.href = 'EmployeeViewPage';
-                    }
-                    else {
-                        console.log("Signing in Failed");
-                        document.getElementById("notificationId").innerHTML = "Signing in Failed"
-                    }
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-        function RegisterUser() { window.location.href = '/Register'; }
-    </script>
-
+    <script src="~/Scripts/JavaScript/LoginUser.js"></script>
 </head>
 <body>
     <div class="area">
         <form>
             <div class="image-container">
-
+                <!--Insert Image-->
             </div>
-
             <h2>Login</h2>
-
             <div class="input-container">
                 <div class="input-field">
                     <label for="empId">EmployeeId</label>
                     <input type="text" id="EmployeeId" name="empId">
                 </div>
-
                 <div class="input-field">
                     <label for="password">Password</label>
                     <input type="password" id="PasswordId" name="empId">

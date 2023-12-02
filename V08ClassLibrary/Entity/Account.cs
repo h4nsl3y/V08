@@ -12,7 +12,7 @@ namespace V08ClassLibrary.Entity
         public string FirstName { get; set; }
         public string OtherName { get; set; }
         public string LastName { get; set; }
-        public string NationalIditificationNumber { get; set; }
+        public string NationalIdentificationNumber { get; set; }
         public int MobileNumber { get; set; }
         public string Email { get; set; }
         public string Department { get; set; }

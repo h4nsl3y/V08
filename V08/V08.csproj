@@ -205,6 +205,8 @@
     <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\JavaScript\GenerateTrainingList.js" />
+    <Content Include="Scripts\JavaScript\LoginUser.js" />
+    <Content Include="Scripts\JavaScript\RegisterUser.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
