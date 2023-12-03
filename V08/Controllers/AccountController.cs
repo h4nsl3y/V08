@@ -65,7 +65,7 @@ namespace V08.Controllers
         public ActionResult GetTrainingList()
         {
             var data = _accountBL.GetTrainingList();
-            return Json(_accountBL.GetTrainingList() , JsonRequestBehavior.AllowGet );
+            return Json((Session["Account"],_accountBL.GetTrainingList()) , JsonRequestBehavior.AllowGet );
         }
         [HttpPost]
         public ActionResult LogUserOut()

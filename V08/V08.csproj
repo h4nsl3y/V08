@@ -205,8 +205,8 @@
     <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\JavaScript\EmployeeViewScript.js" />
-    <Content Include="Scripts\JavaScript\SignInUser.js" />
-    <Content Include="Scripts\JavaScript\RegisterUser.js" />
+    <Content Include="Scripts\JavaScript\RegisterUserScript.js" />
+    <Content Include="Scripts\JavaScript\SignInUserScript.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />

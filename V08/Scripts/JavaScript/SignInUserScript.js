@@ -29,4 +29,4 @@ function PostData() {
         }
     });
 }
-function RegisterUser() { window.location.href = '/Register'; }
+function RegisterUser() { window.location.href = 'RegisterPage'; }

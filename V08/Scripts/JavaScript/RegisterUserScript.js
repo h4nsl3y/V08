@@ -1,14 +1,19 @@
 ﻿function CheckTextField() {
-    var notificationText = "Field(s) ";
+    var notificationText = "Field(s) : ";
     var flag = true;
-    if (document.getElementById("FirstNameId").value == "") { notificationText = notificationText.concat("Firstname ,"); flag = false };
-    if (document.getElementById("LastNameId").value == "") { notificationText = notificationText.concat("LastName ,"); flag = false };
+    if (document.getElementById("FirstNameId").value == "") { notificationText = notificationText.concat("First name ,"); flag = false };
+    if (document.getElementById("LastNameId").value == "") { notificationText = notificationText.concat("Last name ,"); flag = false };
     if (document.getElementById("NationalIdentificationNumberId").value == "") { notificationText = notificationText.concat("National identification number ,"); flag = false };
     if (document.getElementById("MobileNumberId").value == "") { notificationText = notificationText.concat("Mobile number ,"); flag = false };
     if (document.getElementById("EmailId").value == "") { notificationText = notificationText.concat("email ,"); flag = false };
     notificationText = notificationText.concat("are mandatory")
     if (flag) { PostData() }
-    else { document.getElementById("notificationId").innerHTML = notificationText; }
+    else {
+        var FormElement = document.getElementById("container-form"); 
+        console.log(FormElement.getBoundingClientRect().height)
+        FormElement.style.height = FormElement.getBoundingClientRect().height + 50 + "px";
+        document.getElementById("notificationId").innerHTML = notificationText;
+    }
 }
 function PostData() {
     var userDetails = {
