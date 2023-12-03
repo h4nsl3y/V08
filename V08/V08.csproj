@@ -164,6 +164,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="BusinessLogic\IAccountBusinessLogic.cs" />
     <Compile Include="BusinessLogic\AccountBusinessLogic.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,7 +189,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\CSS\employeeViewStyleSheet.css" />
+    <Content Include="Content\CSS\EmployeeViewStyleSheet.css" />
+    <Content Include="Content\CSS\ErrorPageStyleSheet.css" />
     <Content Include="Content\CSS\FormStyleSheet.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -205,6 +207,7 @@
     <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\JavaScript\EmployeeViewScript.js" />
+    <Content Include="Scripts\JavaScript\ErrorScript.js" />
     <Content Include="Scripts\JavaScript\RegisterUserScript.js" />
     <Content Include="Scripts\JavaScript\SignInUserScript.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
@@ -238,6 +241,7 @@
     <Content Include="Views\Account\LogInPage.cshtml" />
     <Content Include="Views\Account\RegisterPage.cshtml" />
     <Content Include="Views\Account\EmployeeViewPage.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

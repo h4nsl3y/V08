@@ -20,10 +20,10 @@ namespace V08ClassLibrary.DatabaseUtil
     {
         private readonly string _connString;
         private SqlConnection _connection;
-        private Logger _logger;
-        public DataAccessLayer()
+        private ILogger _logger;
+        public DataAccessLayer(ILogger logger)
         {
-            _logger = new Logger();
+            _logger = logger;
             _connString = ConfigurationManager.AppSettings["ConnectionString"];
         }
         public void Connect()

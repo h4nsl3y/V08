@@ -73,3 +73,13 @@ body {
     font-size: 13px;
     margin: 0px 30px;
 }
+button {
+    width: 50%;
+    margin: 10px 25%;
+    background-color: rgb(57,130,232);
+    border: none;
+    padding: 10px 10px;
+    border-radius: 20px;
+    color: white;
+}
+

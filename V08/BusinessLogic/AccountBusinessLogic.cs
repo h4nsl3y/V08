@@ -25,7 +25,15 @@ namespace V08.BusinessLogic
         }
         public IEnumerable<Training> GetTrainingList()
         {
-            return _trainingService.GetAll();
+            try
+            {
+                return _trainingService.GetAll();
+            }
+            catch(Exception ex) 
+            {
+                throw;
+            }
+            
         }
         public bool Authenticated(int id, string password)
         {

@@ -49,7 +49,7 @@ function logOutUser() {
             }
         },
         error: function (error) {
-            console.lof("Some Errors has been encountered");
+            Alert("Some Errors has been encountered");
         }
     });
 }

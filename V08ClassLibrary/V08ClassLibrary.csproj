@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Log\ILogger.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Repositories\Enrollment\EnrollmentRepository.cs" />
     <Compile Include="Repositories\Enrollment\IEnrollmentRepository.cs" />
