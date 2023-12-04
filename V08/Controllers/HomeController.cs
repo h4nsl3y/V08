@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using V08ClassLibrary.Entity;
-using V08ClassLibrary.Services;
 
 namespace V08.Controllers
 {
@@ -13,7 +12,9 @@ namespace V08.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("LogInPage", "Account");
+
         }
         public ActionResult About()
         {

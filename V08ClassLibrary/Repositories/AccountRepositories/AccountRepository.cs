@@ -7,13 +7,13 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DatabaseUtil;
+using V08ClassLibrary.DAL;
 using V08ClassLibrary.Entity;
 using V08ClassLibrary.Repositories.GenericRepository;
 
-namespace V08ClassLibrary.DataAccessLayer
+namespace V08ClassLibrary.Repository.AccountRepositories
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IAccountRepository , IAccountManagementRepository
     {
         private readonly IDataAcessLayer _dataAccessLayer;
         public AccountRepository(IDataAcessLayer dataAccessLayer)
@@ -22,24 +22,24 @@ namespace V08ClassLibrary.DataAccessLayer
         }
         public void Add(Account account)
         {
-            string query = $"INSERT INTO [USER](FirstName ,OtherName ,LastName ,NationalIdentificationNumber ,MobileNumber ,Email )" +
+            string query = $"INSERT INTO ACCOUNT (FirstName ,OtherName ,LastName ,NationalIdentificationNumber ,MobileNumber ,Email )" +
                            $"VALUES (@FirstName, @OtherName, @LastName, @NationalIdentificationNumber, @MobileNumber, @Email) ;";
             List<SqlParameter> parameters = GetSqlParameter(account);
             _dataAccessLayer.ExecuteQuery<Account>(query, parameters);
         }
         public bool Authenticated(int id, string password)
         {
-            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}' ; ";
+            string query = $"SELECT * FROM ACCOUNT WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}' ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).Count() > 0;
         }
         public void Delete(int id)
         {
-            string query = $"DELETE FROM [USER] WHERE EMPLOYEEID  = {id} ; ";
+            string query = $"DELETE FROM ACCOUNT WHERE EMPLOYEEID  = {id} ; ";
             _dataAccessLayer.ExecuteQuery<Account>(query);
         }
         public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
         {
-            string query = $"SELECT * FROM USERVIEW " +
+            string query = $"SELECT * FROM ACCOUNT " +
                            $"WHERE EMAIL = '{email}' " +
                            $"OR NATIONALIDENTIFICATIONNUMBER = '{NationalIdentificationNumber}' " +
                            $"OR MOBILENUMBER = {mobileNumber} ; ";
@@ -48,22 +48,22 @@ namespace V08ClassLibrary.DataAccessLayer
         }
         public Account Get(int id)
         {
-            string query = $"SELECT * FROM USERVIEW WHERE EMPLOYEEID  = {id} ; ";
+            string query = $"SELECT * FROM  ACCOUNT WHERE EMPLOYEEID  = {id} ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
         public IEnumerable<Account> GetAll()
         {
-            string query = $"SELECT * FROM USERVIEW ; ";
+            string query = $"SELECT * FROM ACCOUNT ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query);
         }
         public Account GetLast()
         {
-            string query = $"SELECT TOP 1 * FROM USERVIEW ORDER BY EMPLOYEEID DESC; ";
+            string query = $"SELECT TOP 1 * FROM ACCOUNT ORDER BY EMPLOYEEID DESC; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
         public void Update(Account account)
         {
-            string query = $"UPDATE [USER]" +
+            string query = $"UPDATE ACCOUNT" +
                            $"SET FirstName = @FirstName ,OtherName = @OtherName ,LastName = @LastName ," +
                            $"NationalIdentificationNumber = @NationalIdentificationNumber ,MobileNumber @MobileNumber,Email = @Email " +
                            $"WHERE  EMPLOYEEID = @EmployeeId ; ";

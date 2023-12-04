@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DatabaseUtil;
+using V08ClassLibrary.DAL;
 using V08ClassLibrary.Entity;
 using V08ClassLibrary.Repositories.GenericRepository;
 
-namespace V08ClassLibrary.Repositories
+namespace V08ClassLibrary.Repository.EnrollmentRepositories
 {
     public class EnrollmentRepository : IEnrollmentRepository
     {

@@ -10,7 +10,7 @@ namespace V08ClassLibrary.Entity
     {
         public int TrainingId { get; set; }
         public string Title { get; set; }
-        public string Department { get; set; }
+        public int DepartmentId { get; set; }
         public string Prerequisite { get; set; }
         public int SeatNumber { get; set; }
         public DateTime Deadline { get; set; }

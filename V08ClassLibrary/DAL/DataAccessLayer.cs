@@ -14,7 +14,7 @@ using System.Collections;
 using System.Diagnostics.Eventing.Reader;
 using V08ClassLibrary.Log;
 
-namespace V08ClassLibrary.DatabaseUtil
+namespace V08ClassLibrary.DAL
 {
     public class DataAccessLayer : IDataAcessLayer
     {

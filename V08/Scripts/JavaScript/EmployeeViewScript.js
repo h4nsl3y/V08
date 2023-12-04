@@ -1,4 +1,6 @@
-﻿function display(data) {
+﻿
+
+function display(data) {
     var account = data['Item1']
     var trainings = data['Item2']
     console.log(account)

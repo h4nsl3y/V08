@@ -7,7 +7,6 @@ body{
     width : 100%;
     margin-top: 10VH;
     display: grid;
-    grid-template-rows: 3 1;
 }
 .container{
     background-color: white;
@@ -23,10 +22,6 @@ body{
     height: 20vh;
     width: 30%;
     margin: 0px 35%
-}
-.link-container{
-    width: 80%;
-    margin: 20px 10%;
 }
 button {
     width: 25%;

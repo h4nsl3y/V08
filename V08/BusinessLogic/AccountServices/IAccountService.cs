@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using V08ClassLibrary.Entity;
 
-namespace V08.BusinessLogic
+namespace V08.BusinessLogic.AccountService
 {
-    public interface IAccountBusinessLogic
+    public interface IAccountService
     {
         bool AccountExist();
         IEnumerable<Training> GetTrainingList();

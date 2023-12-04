@@ -17,7 +17,7 @@ namespace V08.Controllers
         [HttpPost]
         public ActionResult RedirectHome()
         {
-            return Json(new { redirectToUrl = Url.Action("EmployeeViewPage", "Account") });
+            return Json(new { redirectToUrl = Url.Action("EmployeeViewPage", "Base") });
         }
     }
 }

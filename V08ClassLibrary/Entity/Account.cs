@@ -15,10 +15,10 @@ namespace V08ClassLibrary.Entity
         public string NationalIdentificationNumber { get; set; }
         public int MobileNumber { get; set; }
         public string Email { get; set; }
-        public string Department { get; set; }
+        public int DepartmentId { get; set; }
         public int? ManagerId { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
+        public int RoleId { get; set; }
 
     }
 }

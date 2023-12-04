@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DatabaseUtil;
+using V08ClassLibrary.DAL;
 using V08ClassLibrary.Entity;
 
-namespace V08ClassLibrary.DataAccessLayer
+namespace V08ClassLibrary.Repository.TrainingRepositories
 {
     public class TrainingRepository : ITrainingRepository
     {
@@ -35,12 +35,12 @@ namespace V08ClassLibrary.DataAccessLayer
         }
         public Training Get(int id)
         {
-            string query = $"SELECT * FROM TRAININGVIEW WHERE TRAININGID ={id} ; ";
+            string query = $"SELECT * FROM TRAINING WHERE TRAININGID ={id} ; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query).First();
         }
         public IEnumerable<Training> GetAll()
         {
-            string query = $"SELECT * FROM TRAININGVIEW ; ";
+            string query = $"SELECT * FROM TRAINING; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
         public void Update(Training training)
@@ -58,7 +58,7 @@ namespace V08ClassLibrary.DataAccessLayer
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@TrainingId", training.TrainingId));
             list.Add(new SqlParameter("@Title", training.Title));
-            list.Add(new SqlParameter("@DepartmentId", training.Department));
+            list.Add(new SqlParameter("@DepartmentId", training.DepartmentId));
             list.Add(new SqlParameter("@Prerequisite", training.Prerequisite));
             list.Add(new SqlParameter("@SeatNumber", training.SeatNumber));
             list.Add(new SqlParameter("@Deadline", training.Deadline));

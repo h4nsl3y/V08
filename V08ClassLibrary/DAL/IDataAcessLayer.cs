@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace V08ClassLibrary.DatabaseUtil
+namespace V08ClassLibrary.DAL
 {
     public interface IDataAcessLayer
     {

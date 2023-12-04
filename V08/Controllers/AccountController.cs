@@ -5,24 +5,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using V08.BusinessLogic;
+using BusinessLogic.Services;
 using V08ClassLibrary.Entity;
+using BusinessLogic.Services.AccountServices;
+using BusinessLogic.Services.TrainingServices;
 
 namespace V08.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountBusinessLogic _accountBL;
-        public AccountController(IAccountBusinessLogic accountBL)
+        private readonly IAccountService _accountService;
+        private readonly ITrainingService _trainingService; 
+        public AccountController(IAccountService accountService,
+                                 ITrainingService trainingService)
         {
-            _accountBL = accountBL;
+            _accountService = accountService;
+            _trainingService = trainingService;
         }
         [HttpPost]
         public ActionResult AuthenticateUser(Account account)
         {
-            if (_accountBL.Authenticated(account.EmployeeId, account.Password))
+            if (_accountService.Authenticated(account.EmployeeId, account.Password))
             {
-                Session["Account"] = _accountBL.GetAccount(account.EmployeeId);
+                Session["Account"] = _accountService.GetAccount(account.EmployeeId);
                 return Json(new { message = "Success" });
             }
             else
@@ -51,21 +56,20 @@ namespace V08.Controllers
         [HttpPost]
         public ActionResult RegisterUser(Account account)
         {
-            if (_accountBL.Duplicated(account.Email, account.NationalIdentificationNumber, account.MobileNumber)){
+            if (_accountService.Duplicated(account.Email, account.NationalIdentificationNumber, account.MobileNumber)){
                 return Json(new { message = "National identification number , mobile number or email has already been registered ! " });
             }
             else
             {
-                _accountBL.RegisterUser(account);
-                Session["Account"] = _accountBL.GetLastRegisteredAccount();
+                _accountService.RegisterUser(account);
+                Session["Account"] = _accountService.GetLastRegisteredAccount();
                 return Json(new { message = "Success" });
             }
         }
         [HttpGet]
         public ActionResult GetTrainingList()
         {
-            var data = _accountBL.GetTrainingList();
-            return Json((Session["Account"],_accountBL.GetTrainingList()) , JsonRequestBehavior.AllowGet );
+            return Json((Session["Account"], _trainingService.GetTrainingList()) , JsonRequestBehavior.AllowGet );
         }
         [HttpPost]
         public ActionResult LogUserOut()

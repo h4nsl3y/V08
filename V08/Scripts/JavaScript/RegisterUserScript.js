@@ -33,8 +33,7 @@ function PostData() {
                 window.location.href = '/Account/EmployeeViewPage';
             }
             else {
-                document.getElementById("notificationId").innerHTML = "Registration Failed"
-                alert(result.message)
+                document.getElementById("notificationId").innerHTML = result.message;
             }
         },
         error: function (error) {
