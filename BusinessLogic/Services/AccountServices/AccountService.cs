@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using V08ClassLibrary.Entity;
-using V08ClassLibrary.Repository.AccountRepositories;
-using V08ClassLibrary.Repository.TrainingRepositories;
+using V08DataAccessLayer.Entity;
+using V08DataAccessLayer.Repository.AccountRepositories;
+using V08DataAccessLayer.Repository.TrainingRepositories;
 
 namespace BusinessLogic.Services.AccountServices
 {
@@ -19,30 +19,41 @@ namespace BusinessLogic.Services.AccountServices
             _accountRepository = accountRepository;
             _accountManagementRepository = accountManagementRepository;
         }
-        public bool AccountExist()
+        public bool Add(Account account)
         {
-            throw new NotImplementedException();
+            return _accountRepository.Add(account);
         }
-
-        public bool Authenticated(int id, string password)
+        public bool Authenticated(string email, string password)
         {
-            return _accountManagementRepository.Authenticated(id, password);
+            return _accountManagementRepository.Authenticated(email, password);
+        }
+        public bool Delete(int id)
+        {
+            return _accountRepository.Delete(id);
         }
         public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
         {
-            return _accountRepository.Duplicated(email, NationalIdentificationNumber, mobileNumber);
+            return _accountManagementRepository.Duplicated(email, NationalIdentificationNumber, mobileNumber);
         }
         public Account GetAccount(int id)
         {
             return _accountRepository.Get(id);
         }
-        public void RegisterUser(Account account)
+        public Account GetAccount(string email)
         {
-            _accountRepository.Add(account);
+            return _accountManagementRepository.GetAccount(email);
+        }
+        public IEnumerable<Account> GetAll()
+        {
+            throw new NotImplementedException();
         }
         public Account GetLastRegisteredAccount()
         {
             return _accountManagementRepository.GetLast();
+        }
+        public bool Update(Account account)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,10 +1,10 @@
 using System;
 
 using Unity;
-using V08ClassLibrary.Log;
-using V08ClassLibrary.Repository.AccountRepositories;
-using V08ClassLibrary.DAL;
-using V08ClassLibrary.Repository.TrainingRepositories;
+using V08DataAccessLayer.Log;
+using V08DataAccessLayer.Repository.AccountRepositories;
+using V08DataAccessLayer.DAL;
+using V08DataAccessLayer.Repository.TrainingRepositories;
 using BusinessLogic.Services.AccountServices;
 using BusinessLogic.Services.TrainingServices;
 
@@ -49,9 +49,8 @@ namespace V08
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-
-           container.RegisterType<IAccountService, AccountService>();
-           container.RegisterType<ITrainingService, TrainingService>();
+            container.RegisterType<IAccountService, AccountService>();
+            container.RegisterType<ITrainingService, TrainingService>();
 
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IAccountManagementRepository, AccountRepository>();

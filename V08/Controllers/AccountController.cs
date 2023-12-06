@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using BusinessLogic.Services;
-using V08ClassLibrary.Entity;
+using V08DataAccessLayer.Entity;
 using BusinessLogic.Services.AccountServices;
 using BusinessLogic.Services.TrainingServices;
 
@@ -15,19 +15,16 @@ namespace V08.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        private readonly ITrainingService _trainingService; 
-        public AccountController(IAccountService accountService,
-                                 ITrainingService trainingService)
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
-            _trainingService = trainingService;
         }
         [HttpPost]
         public ActionResult AuthenticateUser(Account account)
         {
-            if (_accountService.Authenticated(account.EmployeeId, account.Password))
+            if (_accountService.Authenticated(account.Email, account.Password))
             {
-                Session["Account"] = _accountService.GetAccount(account.EmployeeId);
+                Session["Account"] = _accountService.GetAccount(account.Email);
                 return Json(new { message = "Success" });
             }
             else
@@ -35,16 +32,7 @@ namespace V08.Controllers
                 return Json(new { message = "Fail" });
             }; 
         }
-        public ActionResult EmployeeViewPage()
-        {
-            if (Session.Contents.Count > 0)
-            {
-                ViewBag.Account = Session["Account"] as Account;
-                return View();
-            }
-            else {return RedirectToAction("LogInPage");
-            }
-        }
+       
         public ActionResult LogInPage()
         {
             return View();
@@ -61,15 +49,16 @@ namespace V08.Controllers
             }
             else
             {
-                _accountService.RegisterUser(account);
-                Session["Account"] = _accountService.GetLastRegisteredAccount();
-                return Json(new { message = "Success" });
+               if(_accountService.Add(account))
+                {
+                    Session["Account"] = _accountService.GetLastRegisteredAccount();
+                    return Json(new { message = "Success" });
+                }
+                else
+                {
+                    return Json(new { message = "Failed" });
+                }
             }
-        }
-        [HttpGet]
-        public ActionResult GetTrainingList()
-        {
-            return Json((Session["Account"], _trainingService.GetTrainingList()) , JsonRequestBehavior.AllowGet );
         }
         [HttpPost]
         public ActionResult LogUserOut()

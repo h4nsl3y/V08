@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace V08ClassLibrary
+namespace V08ClassLibrary.Enum
 {
-    public class Class1
+    public enum EnumRole
     {
+        Employee=1,
+        Manager=2,
+        Administrator=3
     }
 }

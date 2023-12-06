@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace V08ClassLibrary.DAL
+namespace V08DataAccessLayer.DAL
 {
     public interface IDataAcessLayer
     {
         void Connect();
         void Disconnect();
-        List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters);
-        List<T> ExecuteQuery<T>(string query);
+        List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null);
+        bool AffectedRows(string query, List<SqlParameter> parameters = null);
     }
 }

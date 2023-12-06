@@ -5,15 +5,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.Entity;
+using V08DataAccessLayer.Entity;
 
-namespace V08ClassLibrary.Repository.TrainingRepositories
+namespace V08DataAccessLayer.Repository.TrainingRepositories
 {
     public interface ITrainingRepository
     {
-        void Add(Training training);
-        void Delete(int id);
-        void Update(Training training);
+        bool Add(Training training);
+        bool Delete(int id);
+        bool Update(Training training);
         Training Get(int id);
         IEnumerable<Training> GetAll();
     }

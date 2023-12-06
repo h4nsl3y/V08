@@ -61,5 +61,8 @@ label:has(+ input:focus ){
     color : rgb(255,0,0);
     text-align : center;
 }
+th, td {
+    border-bottom: 1px solid #ddd;
+}
 
 

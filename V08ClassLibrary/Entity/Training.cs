@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace V08ClassLibrary.Entity
+namespace V08DataAccessLayer.Entity
 {
     public class Training 
     {

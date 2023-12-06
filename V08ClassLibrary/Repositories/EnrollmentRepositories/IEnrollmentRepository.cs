@@ -4,15 +4,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.Entity;
+using V08DataAccessLayer.Entity;
 
-namespace V08ClassLibrary.Repository.EnrollmentRepositories
+namespace V08DataAccessLayer.Repository.EnrollmentRepositories
 {
     public interface IEnrollmentRepository
     {
-        void Add(Enrollment enrollment);
-        void Delete(int id);
-        void Update(Enrollment enrollment);
+        bool Add(Enrollment enrollment);
+        bool Delete(int id);
+        bool Update(Enrollment enrollment);
         Enrollment Get(int id);
         IEnumerable<Enrollment> GetAll();
     }

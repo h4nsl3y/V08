@@ -12,9 +12,9 @@ using System.Configuration;
 using System.Reflection;
 using System.Collections;
 using System.Diagnostics.Eventing.Reader;
-using V08ClassLibrary.Log;
+using V08DataAccessLayer.Log;
 
-namespace V08ClassLibrary.DAL
+namespace V08DataAccessLayer.DAL
 {
     public class DataAccessLayer : IDataAcessLayer
     {
@@ -36,38 +36,35 @@ namespace V08ClassLibrary.DAL
         }
         public void Disconnect()
         {
-            if (_connection != null && _connection.State != ConnectionState.Open)
+            if (_connection != null && _connection.State == ConnectionState.Open)
             {
                 _connection.Close();
             }
         }
-        public List<T> ExecuteQuery<T>(string query)
+        public bool AffectedRows(string query,List<SqlParameter> parameters = null)
         {
-            List<T> objectList = new List<T>();
+            int rowsAffected =0;
             try
             {
                 Connect();
-                SqlCommand cmd = new SqlCommand(query, _connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlCommand sqlCommand = new SqlCommand(query, _connection))
                 {
-                    T item = MapObject<T>(reader);
-                    objectList.Add(item);
+                    if (parameters != null) { sqlCommand.Parameters.AddRange(parameters.ToArray()); }
+                    rowsAffected = sqlCommand.ExecuteNonQuery();
                 }
-                reader.Close();
-                Disconnect();
             }
             catch (Exception error)
             {
-                Disconnect();
                 _logger.Log(error);
                 throw;
             }
-
-            return objectList;
+            finally
+            {
+                Disconnect();
+            }
+            return rowsAffected!=0;
         }
-        public List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters)
+        public List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null)
         {
             List<T> objectList = new List<T>();
             try
@@ -75,7 +72,7 @@ namespace V08ClassLibrary.DAL
                 Connect();
                 using (SqlCommand sqlCommand = new SqlCommand(query, _connection))
                 {
-                    sqlCommand.Parameters.AddRange(parameters.ToArray());
+                    if (parameters != null) { sqlCommand.Parameters.AddRange(parameters.ToArray()); }
                     SqlDataReader reader = sqlCommand.ExecuteReader();
 
                     while (reader.Read())
@@ -84,22 +81,21 @@ namespace V08ClassLibrary.DAL
                         objectList.Add(item);
                     }
                     reader.Close();
-            }
-            Disconnect();
+                }
             }
             catch (Exception error)
             {
-                Disconnect();
                 _logger.Log(error);
                 throw;
             }
-
-
+            finally
+            {
+                Disconnect();
+            }
             return objectList;
         }
         private T MapObject<T>(IDataReader reader)
         {
-
             Type type = typeof(T);
             T obj = Activator.CreateInstance<T>();
             string propertyName;
@@ -109,7 +105,6 @@ namespace V08ClassLibrary.DAL
             {
                 propertyName = reader.GetName(i).ToString();
                 var value = reader[i];
-                
                 properties = type.GetProperties();
                 foreach(PropertyInfo property in properties)
                 {

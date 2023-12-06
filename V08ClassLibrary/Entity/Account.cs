@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using V08ClassLibrary.Enum;
 
-namespace V08ClassLibrary.Entity
+namespace V08DataAccessLayer.Entity
 {
     public class Account 
     {

@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DAL;
-using V08ClassLibrary.Entity;
+using V08DataAccessLayer.DAL;
+using V08DataAccessLayer.Entity;
 
-namespace V08ClassLibrary.Repository.TrainingRepositories
+namespace V08DataAccessLayer.Repository.TrainingRepositories
 {
     public class TrainingRepository : ITrainingRepository
     {
@@ -17,7 +17,7 @@ namespace V08ClassLibrary.Repository.TrainingRepositories
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(Training training)
+        public bool Add(Training training)
         {
         string query = $"INSERT INTO TRAINING(title ,departmentId ,prerequisite ," +
                                               $"seatNumber ,deadline ,startDate," +
@@ -26,12 +26,12 @@ namespace V08ClassLibrary.Repository.TrainingRepositories
                                               $"@Prerequisite, @SeatNumber, @Deadline" +
                                               $"@ShortDescription, @LongDescription) ; ";
             List<SqlParameter> parameters = GetSqlParameter(training);
-            _dataAccessLayer.ExecuteQuery<Training>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             string query = $"DELETE FROM TRAINING WHERE TRAININGID = {id} ; ";
-            _dataAccessLayer.ExecuteQuery<Training>(query).First();
+            return _dataAccessLayer.AffectedRows(query);
         }
         public Training Get(int id)
         {
@@ -43,7 +43,7 @@ namespace V08ClassLibrary.Repository.TrainingRepositories
             string query = $"SELECT * FROM TRAINING; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
-        public void Update(Training training)
+        public bool Update(Training training)
         {
             string query = $"UPDATE TRAINING " +
                            $"set title = @Title ,departmentId = @DepartmentId ,prerequisite = @Prerequisite ," +
@@ -51,7 +51,7 @@ namespace V08ClassLibrary.Repository.TrainingRepositories
                            $"endDate = @EndDate ,shortDescription = @ShortDescription, LongDescription = @LongDescription " +
                            $"WHERE TRAININGID = @TrainingId ; ";
             List<SqlParameter> parameters = GetSqlParameter(training);
-            _dataAccessLayer.ExecuteQuery<Training>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
         private List<SqlParameter> GetSqlParameter(Training training)
         {

@@ -1,50 +1,43 @@
-﻿
-
-function display(data) {
-    var account = data['Item1']
-    var trainings = data['Item2']
-    console.log(account)
-    var parentContainer = document.getElementById('container-list-id');
-
-    document.getElementById('account-img-id').textContent = account.FirstName.charAt(0) + account.LastName.charAt(0)
-    var accountFullName = document.getElementById('account-fullname-id')
-    if (account.OtherName != null) { accountFullName.textContent = account.FirstName + " " + account.OtherName + " " + account.LastName }
-    else { accountFullName.textContent = account.FirstName + " " + account.LastName }
-
-    
-    for (var key in trainings) {
-        var training = trainings[key];
-        
-        if (key > 0) {
-            var originalDiv = document.getElementById('trainingContainerId');
-            var clonedDiv = originalDiv.cloneNode(true);
-            clonedDiv.id = 'trainingContainerId-'.concat(key);
-            parentContainer.appendChild(clonedDiv);
-            var trainingTitleLabel = parentContainer.querySelector('#trainingTitleId');
-            var trainingDepartmentLabel = parentContainer.querySelector('#trainingDepartmentId');
-            var smallDescriptionId = parentContainer.querySelector('#smallDescriptionId');
-            trainingTitleLabel.textContent = training.Title;
-            trainingDepartmentLabel.textContent = training.Department;
-            smallDescriptionId.textContent = training.ShortDescription;
-        }
-        else {
-            var trainingTitleLabel = document.getElementById('trainingTitleId');
-            var trainingDepartmentLabel = document.getElementById('trainingDepartmentId');
-            var smallDescriptionId = document.getElementById('smallDescriptionId');
-            trainingTitleLabel.textContent = training.Title;
-            trainingDepartmentLabel.textContent = training.Department;
-            smallDescriptionId.textContent = training.ShortDescription;
-        }
+﻿$(document).ready(
+    function () {
+        $.ajax({
+            type: 'GET',
+            url: "GetTrainingList",
+            data: 'json',
+            success: function (trainings) {
+                display(trainings)
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     }
+)
+
+function display(trainings) {
+    var parentContainer = document.getElementById('container-list-id');
+    var table = document.getElementById('listContainerId');
+
+    var tableBody = $('#listContainerId tbody');
+    tableBody.empty();
+    trainings.forEach(function (training) {
+        var startdate = Date(training.StartDate);
+        var row = '<tr>' + "<td id='id'>" + training.TrainingId + '</td>' +
+            '<td>' + training.Title + '</td>' +
+            '<td>' + startdate + '</td>' +
+            '<td>' + training.ShortDescription + '<td>' +
+            "<td><button class='item-button' onclick='getDetail("+training.TrainingId+")'>details</button><td>" +
+               '</tr>';
+        tableBody.append(row);
+    })
 }
 function logOutUser() {
     $.ajax({
         type: 'POST',
-        url: "LogUserOut",
+        url: "/Account/LogUserOut",
         success: function (result) {
-            console.log(result);
             if (result.message == "Success") {
-                window.location.href = 'LogInPage';
+                window.location.href = '/Account/LogInPage';
             }
             else {
                 Alert("Failed to log out");
@@ -54,4 +47,7 @@ function logOutUser() {
             Alert("Some Errors has been encountered");
         }
     });
+}
+function getDetail(id) {
+    console.log(id)
 }

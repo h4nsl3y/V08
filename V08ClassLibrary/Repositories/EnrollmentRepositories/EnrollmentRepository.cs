@@ -4,11 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DAL;
-using V08ClassLibrary.Entity;
-using V08ClassLibrary.Repositories.GenericRepository;
+using V08DataAccessLayer.DAL;
+using V08DataAccessLayer.Entity;
 
-namespace V08ClassLibrary.Repository.EnrollmentRepositories
+namespace V08DataAccessLayer.Repository.EnrollmentRepositories
 {
     public class EnrollmentRepository : IEnrollmentRepository
     {
@@ -17,17 +16,17 @@ namespace V08ClassLibrary.Repository.EnrollmentRepositories
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(Enrollment enrollment)
+        public bool Add(Enrollment enrollment)
         {
             string query = $"INSERT INTO ENROLLMENT(EnrollmentId ,EmployeeId ,TrainingId ,[Status] ,SubmissionDate)" +
                            $"VALUES (@EnrollmentId ,@EmployeeId ,@TrainingId ,@Status ,@SubmissionDate) ; ";
             List<SqlParameter> parameters = GetSqlParameter(enrollment);
-            _dataAccessLayer.ExecuteQuery<Enrollment>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             string query = $"DELETE FROM ENROLLMENT WHERE EMPLOYEEID  = {id} ; ";
-            _dataAccessLayer.ExecuteQuery<Account>(query);
+            return _dataAccessLayer.AffectedRows(query);
         }
         public Enrollment Get(int id)
         {
@@ -39,14 +38,14 @@ namespace V08ClassLibrary.Repository.EnrollmentRepositories
             string query = $"SELECT * FROM ENROLLMENT ; ";
             return _dataAccessLayer.ExecuteQuery<Enrollment>(query);
         }
-        public void Update(Enrollment enrollment)
+        public bool Update(Enrollment enrollment)
         {
             string query =$"UPDATE  ENROLLMENT" +
                           $"SET EmployeeId = @EmployeeId, TrainingId = @TrainingId, " +
                           $"[Status] = @Status , SubmissionDate = @SubmissionDate" +
                           $"WHERE EnrollmentId = @EnrollmentId, ; ";
             List<SqlParameter> parameters = GetSqlParameter(enrollment);
-            _dataAccessLayer.ExecuteQuery<Enrollment>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
         private List<SqlParameter> GetSqlParameter(Enrollment enrollment)
         {

@@ -30,7 +30,7 @@ function PostData() {
         data: userDetails,
         success: function (result) {
             if (result.message == "Success") {
-                window.location.href = '/Account/EmployeeViewPage';
+                window.location.href = '/Home/EmployeeViewPage';
             }
             else {
                 document.getElementById("notificationId").innerHTML = result.message;

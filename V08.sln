@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V08", "V08\V08.csproj", "{09FE7C4B-C759-4564-9F49-CC02D1A3E75B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V08ClassLibrary", "V08ClassLibrary\V08ClassLibrary.csproj", "{34F5365B-C852-4EFE-99FA-848FDD1F9D47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V08DataAccessLayer", "V08ClassLibrary\V08DataAccessLayer.csproj", "{34F5365B-C852-4EFE-99FA-848FDD1F9D47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{E4FB8015-C609-401E-8EAF-CF595860536C}"
 EndProject

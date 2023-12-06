@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.Entity;
+using V08DataAccessLayer.Entity;
 
 namespace BusinessLogic.Services.AccountServices
 {
     public interface IAccountService
     {
-        bool AccountExist();
-        bool Authenticated(int id, string password);
+        bool Add(Account account);
+        bool Authenticated(string email, string password);
+        bool Delete(int id);
         bool Duplicated(string email,string NationalIdentificationNumber , int mobileNumber);
-        Account GetAccount(int id);
+        Account GetAccount(string email);
+        IEnumerable<Account> GetAll();
         Account GetLastRegisteredAccount();
-        void RegisterUser(Account account);
+        bool Update(Account account);
     }
 }

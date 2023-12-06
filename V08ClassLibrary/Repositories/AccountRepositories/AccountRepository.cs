@@ -7,11 +7,10 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using V08ClassLibrary.DAL;
-using V08ClassLibrary.Entity;
-using V08ClassLibrary.Repositories.GenericRepository;
+using V08DataAccessLayer.DAL;
+using V08DataAccessLayer.Entity;
 
-namespace V08ClassLibrary.Repository.AccountRepositories
+namespace V08DataAccessLayer.Repository.AccountRepositories
 {
     public class AccountRepository : IAccountRepository , IAccountManagementRepository
     {
@@ -20,22 +19,22 @@ namespace V08ClassLibrary.Repository.AccountRepositories
         {
             _dataAccessLayer = dataAccessLayer;
         }
-        public void Add(Account account)
+        public bool Add(Account account)
         {
             string query = $"INSERT INTO ACCOUNT (FirstName ,OtherName ,LastName ,NationalIdentificationNumber ,MobileNumber ,Email )" +
                            $"VALUES (@FirstName, @OtherName, @LastName, @NationalIdentificationNumber, @MobileNumber, @Email) ;";
             List<SqlParameter> parameters = GetSqlParameter(account);
-            _dataAccessLayer.ExecuteQuery<Account>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
-        public bool Authenticated(int id, string password)
+        public bool Authenticated(string email, string password)
         {
-            string query = $"SELECT * FROM ACCOUNT WHERE EMPLOYEEID  = {id} AND PASSWORD = '{password}' ; ";
-            return _dataAccessLayer.ExecuteQuery<Account>(query).Count() > 0;
+            string query = $"SELECT * FROM ACCOUNT WHERE EMAIL = '{email}' AND PASSWORD = '{password}' ; ";
+            return _dataAccessLayer.AffectedRows(query);
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             string query = $"DELETE FROM ACCOUNT WHERE EMPLOYEEID  = {id} ; ";
-            _dataAccessLayer.ExecuteQuery<Account>(query);
+            return _dataAccessLayer.AffectedRows(query);
         }
         public bool Duplicated(string email, string NationalIdentificationNumber, int mobileNumber)
         {
@@ -44,11 +43,16 @@ namespace V08ClassLibrary.Repository.AccountRepositories
                            $"OR NATIONALIDENTIFICATIONNUMBER = '{NationalIdentificationNumber}' " +
                            $"OR MOBILENUMBER = {mobileNumber} ; ";
 
-            return _dataAccessLayer.ExecuteQuery<Account>(query).Count > 0;
+            return _dataAccessLayer.AffectedRows(query);
         }
         public Account Get(int id)
         {
-            string query = $"SELECT * FROM  ACCOUNT WHERE EMPLOYEEID  = {id} ; ";
+            string query = $"SELECT * FROM  ACCOUNT WHERE EMPLOYEEID = {id} ; ";
+            return _dataAccessLayer.ExecuteQuery<Account>(query).First();
+        }
+        public Account GetAccount(string email)
+        {
+            string query = $"SELECT * FROM ACCOUNT WHERE EMAIL = '{email}' ; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
         public IEnumerable<Account> GetAll()
@@ -61,14 +65,14 @@ namespace V08ClassLibrary.Repository.AccountRepositories
             string query = $"SELECT TOP 1 * FROM ACCOUNT ORDER BY EMPLOYEEID DESC; ";
             return _dataAccessLayer.ExecuteQuery<Account>(query).First();
         }
-        public void Update(Account account)
+        public bool Update(Account account)
         {
             string query = $"UPDATE ACCOUNT" +
                            $"SET FirstName = @FirstName ,OtherName = @OtherName ,LastName = @LastName ," +
                            $"NationalIdentificationNumber = @NationalIdentificationNumber ,MobileNumber @MobileNumber,Email = @Email " +
                            $"WHERE  EMPLOYEEID = @EmployeeId ; ";
             List<SqlParameter> parameters = GetSqlParameter(account);
-            _dataAccessLayer.ExecuteQuery<Account>(query, parameters);
+            return _dataAccessLayer.AffectedRows(query, parameters);
         }
         private List<SqlParameter> GetSqlParameter(Account account)
         {

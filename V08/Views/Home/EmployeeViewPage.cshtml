@@ -1,0 +1,67 @@
+﻿@model V08DataAccessLayer.Entity.Account
+@{
+    Layout = null;
+}
+
+@{ 
+    string fullName;
+    string initial;
+    if (Model.OtherName != null)
+    {
+        fullName = Model.FirstName + " " + Model.OtherName + " " + Model.LastName; 
+    }
+    else
+    {
+        fullName = Model.FirstName + " " + Model.LastName; 
+    }
+    initial = Model.FirstName.Substring(0, 1) + Model.LastName.Substring(0, 1);
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/CSS/UserViewStyleSheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="~/Scripts/JavaScript/EmployeeViewScript.js"></script>
+</head>
+    <body>
+        <div class="account-area">
+            <div class="account-img-container">
+                <label class="account-img" id="account-img-id">@initial</label>
+            </div>
+            <div class="account-fullname-container">
+                <h2 class="account-fullname" id="account-fullname-id">@fullName</h2>
+            </div>
+            <div class="log-out-container">
+                <button class="log-out-button" onclick="logOutUser()">Log out</button>
+            </div>
+        </div>
+        <div class="List-area">
+            <div class="container-title">
+                <h1>Applications</h1>
+            </div>
+            <div class="container-list" id="container-list-id">
+                <table class="list-item" id="listContainerId">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Option</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @*<td id="button"><button class="item-button" id="buttonItemId" name="" onclick="getDetail()">Details</button></td>*@
+                    </tbody>
+                            
+                </table>
+
+            </div>
+        </div>
+</body>
+</html>

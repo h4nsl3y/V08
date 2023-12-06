@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountServices\AccountService.cs" />
     <Compile Include="Services\AccountServices\IAccountService.cs" />
@@ -51,10 +50,13 @@
     <Compile Include="Services\TrainingServices\TrainingService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\V08ClassLibrary\V08ClassLibrary.csproj">
+    <ProjectReference Include="..\V08ClassLibrary\V08DataAccessLayer.csproj">
       <Project>{34f5365b-c852-4efe-99fa-848fdd1f9d47}</Project>
-      <Name>V08ClassLibrary</Name>
+      <Name>V08DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

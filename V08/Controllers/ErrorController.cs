@@ -13,11 +13,10 @@ namespace V08.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult RedirectHome()
         {
-            return Json(new { redirectToUrl = Url.Action("EmployeeViewPage", "Base") });
+            return Json(new { redirectToUrl = Url.Action("EmployeeViewPage", "Account") });
         }
     }
 }
