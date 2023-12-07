@@ -18,8 +18,8 @@ namespace V08DataAccessLayer.Repository.EnrollmentRepositories
         }
         public bool Add(Enrollment enrollment)
         {
-            string query = $"INSERT INTO ENROLLMENT(EnrollmentId ,EmployeeId ,TrainingId ,[Status] ,SubmissionDate)" +
-                           $"VALUES (@EnrollmentId ,@EmployeeId ,@TrainingId ,@Status ,@SubmissionDate) ; ";
+            string query = $"INSERT INTO ENROLLMENT(EmployeeId ,TrainingId ,SubmissionDate)" +
+                           $"VALUES (@EmployeeId ,@TrainingId ,@SubmissionDate) ; ";
             List<SqlParameter> parameters = GetSqlParameter(enrollment);
             return _dataAccessLayer.AffectedRows(query, parameters);
         }

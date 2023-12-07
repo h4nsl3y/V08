@@ -24,8 +24,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/CSS/UserViewStyleSheet.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="~/Scripts/JavaScript/EmployeeViewScript.js"></script>
+
+    <script defer src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script defer src="~/Scripts/JavaScript/EmployeeViewScript.js"></script>
 </head>
     <body>
         <div class="account-area">
@@ -41,10 +42,10 @@
         </div>
         <div class="List-area">
             <div class="container-title">
-                <h1>Applications</h1>
+                <p>Applications</p>
             </div>
             <div class="container-list" id="container-list-id">
-                <table class="list-item" id="listContainerId">
+                <table class="list-item display" id="listContainerId" >
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -56,12 +57,26 @@
 
                     </thead>
                     <tbody>
-                        @*<td id="button"><button class="item-button" id="buttonItemId" name="" onclick="getDetail()">Details</button></td>*@
                     </tbody>
-                            
                 </table>
-
             </div>
         </div>
+        <div id ="screenOverlay" class="overlay">
+        <div class="display-content">
+            <div class="text-content">
+                <p id="detailTitle">Title :</p>
+                <p id="detailId">Training ID :</p>
+                <p id="detailDepartmentPriority">Priority to :</p>
+                <p id="detailRequirement"></p>
+                <p id="detailDescription">Description : </p>
+                <p id="detailDate">Date : </p>
+            </div>
+            <div class="upload-area"></div>
+            <div class="button-content">
+                <button class="item-button" onclick="hideDetail()">Close</button>
+                <button class="item-button" onclick="enroll()">Enroll</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

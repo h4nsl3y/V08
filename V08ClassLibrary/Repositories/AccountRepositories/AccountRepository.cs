@@ -29,7 +29,7 @@ namespace V08DataAccessLayer.Repository.AccountRepositories
         public bool Authenticated(string email, string password)
         {
             string query = $"SELECT * FROM ACCOUNT WHERE EMAIL = '{email}' AND PASSWORD = '{password}' ; ";
-            return _dataAccessLayer.AffectedRows(query);
+            return (_dataAccessLayer.ExecuteQuery<Account>(query).Count() > 0);
         }
         public bool Delete(int id)
         {
@@ -43,7 +43,7 @@ namespace V08DataAccessLayer.Repository.AccountRepositories
                            $"OR NATIONALIDENTIFICATIONNUMBER = '{NationalIdentificationNumber}' " +
                            $"OR MOBILENUMBER = {mobileNumber} ; ";
 
-            return _dataAccessLayer.AffectedRows(query);
+            return (_dataAccessLayer.ExecuteQuery<Account>(query).Count() > 0);
         }
         public Account Get(int id)
         {

@@ -4,21 +4,20 @@ body{
 }
 .area{
     width : 25%;
-    min-width: 500px;
-    min-height: 800px;
+    min-width: 300px;
+    min-height: 500px;
     margin : 0px 35%;
 }
 form{
     background-color:white;
     width:100%;
-    height:700px;
     margin: 100px 0px;
-    border-radius: 20px;
+
 }
 .image-container{
     background-color: blue;
     width: 60%;
-    height : 150px;
+    height : 100px;
     margin: 40px 20%;
 }
 h2{
@@ -26,7 +25,7 @@ h2{
 }
 .input-field{
     display: grid;
-    grid-template-rows: 1 1;
+    grid-template-rows: 50% 50%;
     margin:30px 10%;
 }
 label{

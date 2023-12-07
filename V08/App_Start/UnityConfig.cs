@@ -7,6 +7,8 @@ using V08DataAccessLayer.DAL;
 using V08DataAccessLayer.Repository.TrainingRepositories;
 using BusinessLogic.Services.AccountServices;
 using BusinessLogic.Services.TrainingServices;
+using V08DataAccessLayer.Repository.EnrollmentRepositories;
+using BusinessLogic.Services.EnrollmentServices;
 
 namespace V08
 {
@@ -51,10 +53,12 @@ namespace V08
 
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ITrainingService, TrainingService>();
+            container.RegisterType<IEnrollmentService, EnrollmentService>();
 
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IAccountManagementRepository, AccountRepository>();
             container.RegisterType<ITrainingRepository, TrainingRepository>();
+            container.RegisterType<IEnrollmentRepository, EnrollmentRepository>();
 
             container.RegisterType<IDataAcessLayer, DataAccessLayer>();
             container.RegisterType<ILogger, Logger>();

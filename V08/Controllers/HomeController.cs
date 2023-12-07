@@ -10,33 +10,35 @@ using V08DataAccessLayer.Entity;
 
 namespace V08.Controllers
 {
-    [CustomSessionState]
+    
     public class HomeController : Controller
     {
+       
         public ActionResult Index()
         {
             return RedirectToAction("LogInPage", "Account");
         }
+        [CustomSessionState]
         [CustomAuthorization(EnumRole.Employee)]
         public ActionResult EmployeeViewPage()
         {
-             return View(Session["Account"]);
+            return View(Session["Account"]);
         }
+        [CustomSessionState]
         [CustomAuthorization(EnumRole.Manager)]
         public ActionResult ManagerViewPage()
         {
             return View(Session["Account"]);
         }
+        [CustomSessionState]
         [CustomAuthorization(EnumRole.Administrator)]
         public ActionResult AdministratorViewPage()
         {
             return View(Session["Account"]);
         }
-        [HttpGet]
-        public ActionResult GetTrainingList()
+        public ActionResult RegisterEnrollment()
         {
-            return RedirectToAction("GetTrainingList", "Training");
+            return RedirectToAction("Enrollment", "RegisterEnrollment");
         }
-
     }
 }

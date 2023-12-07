@@ -12,7 +12,7 @@ namespace V08DataAccessLayer.DAL
     {
         void Connect();
         void Disconnect();
-        List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null);
+        IEnumerable<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null);
         bool AffectedRows(string query, List<SqlParameter> parameters = null);
     }
 }

@@ -13,7 +13,7 @@ namespace V08DataAccessLayer.Entity
         public int EnrollmentId { get; set; }
         public int EmployeeId { get; set; }
         public int TrainingId { get; set; }
-        public int Status { get; set; } 
+        public string Status { get; set; } = "Waiting_For_Approval";
         public DateTime SubmissionDate { get; set; }
     }
 }

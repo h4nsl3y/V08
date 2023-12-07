@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using V08ClassLibrary.Custom;
+using V08ClassLibrary.Enum;
 using V08DataAccessLayer.Entity;
 
 namespace V08.Controllers
@@ -15,9 +17,15 @@ namespace V08.Controllers
         {
             _trainingService = trainingService;
         }
+        [HttpGet]
         public ActionResult GetTrainingList()
         {
             return Json(_trainingService.GetAll(), JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetTraining(int id)
+        {
+            return Json(_trainingService.Get(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

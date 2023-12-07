@@ -62,9 +62,9 @@ namespace V08DataAccessLayer.DAL
             {
                 Disconnect();
             }
-            return rowsAffected!=0;
+            return rowsAffected > 0;
         }
-        public List<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null)
+        public IEnumerable<T> ExecuteQuery<T>(string query, List<SqlParameter> parameters = null)
         {
             List<T> objectList = new List<T>();
             try
