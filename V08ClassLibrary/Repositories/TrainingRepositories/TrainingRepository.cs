@@ -5,12 +5,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using V08ClassLibrary.Repositories.TrainingRepositories;
 using V08DataAccessLayer.DAL;
 using V08DataAccessLayer.Entity;
 
 namespace V08DataAccessLayer.Repository.TrainingRepositories
 {
-    public class TrainingRepository : ITrainingRepository
+    public class TrainingRepository : ITrainingRepository , ITrainingManagementRepository
     {
         private readonly IDataAcessLayer _dataAccessLayer;
         public TrainingRepository(IDataAcessLayer dataAccessLayer)
@@ -43,6 +44,14 @@ namespace V08DataAccessLayer.Repository.TrainingRepositories
             string query = $"SELECT * FROM TRAINING; ";
             return _dataAccessLayer.ExecuteQuery<Training>(query);
         }
+
+        public IEnumerable<Training> GetUnenrolled(int employeeId)
+        {
+            string query = $"SELECT * FROM TRAINING WHERE TRAININGID NOT IN " +
+                           $"( SELECT TRAININGID FROM ENROLLMENT WHERE EMPLOYEEID = {employeeId}) ;";
+            return _dataAccessLayer.ExecuteQuery<Training>(query);
+        }
+
         public bool Update(Training training)
         {
             string query = $"UPDATE TRAINING " +

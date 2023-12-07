@@ -22,10 +22,10 @@ namespace V08ClassLibrary.Custom
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             Controller controller = filterContext.Controller as Controller;
-            if (controller != null && controller.Session["Account"] != null) 
+            if (controller != null && controller.Session["Role"] != null) 
             {
-                Account sessionAccount = controller.Session["Account"] as Account;
-                EnumRole currentRole = (EnumRole)sessionAccount.RoleId;
+                EnumRole sessionAccountRole = (EnumRole)controller.Session["Role"];
+                EnumRole currentRole = sessionAccountRole;
                 if (AuthorizedRole != currentRole)
                 {
                     filterContext.Result = new RedirectToRouteResult(

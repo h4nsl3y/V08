@@ -1,19 +1,19 @@
 ﻿$(document).ready(
-    function () {
-        $.ajax({
-            type: 'GET',
-            url: "/Training/GetTrainingList",
-            data: 'json',
-            success: function (trainings) {
-                display(trainings)
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    }
+    GetUnenrolledTrainingList()
 )
-
+function GetUnenrolledTrainingList() {
+    $.ajax({
+        type: 'GET',
+        url: "/Training/GetUnenrolledTrainingList",
+        data: 'json',
+        success: function (trainings) {
+            display(trainings)
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
 function display(trainings) {
     let parentContainer = document.getElementById('container-list-id');
     let table = document.getElementById('listContainerId');
@@ -26,7 +26,7 @@ function display(trainings) {
             '<td>' + training.Title + '</td>' +
             '<td>' + startdate + '</td>' +
             '<td>' + training.ShortDescription + '<td>' +
-            "<td><button class='item-button' onclick='displayDetail("+training.TrainingId+")'>details</button><td>" +
+            "<td><button class='item-button' id='detailButton" + training.TrainingId + "' onclick='displayDetail("+training.TrainingId+")'>details</button><td>" +
                '</tr>';
         tableBody.append(row);
 
@@ -95,14 +95,17 @@ function enroll() {
         url: urlString,
         success: function (result) {
             if (result.message == "success") {
-                console.log("sucess")
+                alert("sucess")
+                let overlay = document.getElementById("screenOverlay");
+                GetUnenrolledTrainingList()
+                overlay.style.visibility = "hidden";
             }
             else {
-                console.log("failed")
+                alert("failed")
             }
         },
         error: function (error) {
-            console.log("error")
+            alert("error")
         }
     });
 

@@ -14,5 +14,6 @@ namespace BusinessLogic.Services.TrainingServices
         bool Update(Training training);
         Training Get(int id);
         IEnumerable<Training> GetAll();
+        IEnumerable<Training> GetUnenrolled(int employeeid);
     }
 }

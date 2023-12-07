@@ -29,7 +29,10 @@ h2{
     margin:30px 10%;
 }
 label{
-    font-size: 13px;
+    font-size: 10px;
+}
+input {
+    font-size: 10px;
 }
 input[type=text], input[type=number], input[type=password]{
     border: none;

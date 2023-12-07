@@ -18,6 +18,7 @@ function PostData() {
         data: data,
         success: function (result) {
             if (result.message == "Success") {
+                alert("sucess")
                 window.location.href = '/Home/EmployeeViewPage';
             }
             else {

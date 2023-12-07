@@ -10,7 +10,7 @@
     min-width: 800px;
     margin: 20px 10%;
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 10% 80% 10%;
 }
 .account-img-container {
     text-align: center;
@@ -22,7 +22,7 @@
     border-radius: 50%;
     text-align: center;
     padding: 25px 25px;
-    top: 40px;
+    top: 35px;
     font-size: 25px;
 }
 .account-fullname {
@@ -93,7 +93,7 @@ tr{
     margin: 5px 5px;
 }
 table, p{
-    font-size:10px;
+    font-size:12px;
 }
 .overlay {
     position: fixed;

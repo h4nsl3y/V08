@@ -24,7 +24,14 @@ namespace V08.Controllers
         {
             if (_accountService.Authenticated(account.Email, account.Password))
             {
-                Session["Account"] = _accountService.GetAccount(account.Email);
+                Account user = _accountService.GetAccount(account.Email);
+                Session["EmployeeId"] = user.EmployeeId;
+                Session["FirstName"] = user.FirstName;
+                Session["LastName"] = user.LastName;
+                Session["OtherName"] = user.OtherName;
+                Session["Email"] = user.Email;
+                Session["MobileNumber"] = user.MobileNumber;
+                Session["Role"] = user.RoleId;
                 return Json(new { message = "Success" });
             }
             else
@@ -51,7 +58,14 @@ namespace V08.Controllers
             {
                if(_accountService.Add(account))
                 {
-                    Session["Account"] = _accountService.GetLastRegisteredAccount();
+                    Account user = _accountService.GetLastRegisteredAccount();
+                    Session["EmployeeId"] = user.EmployeeId;
+                    Session["FirstName"] = user.FirstName;
+                    Session["LastName"] = user.LastName;
+                    Session["OtherName"] = user.OtherName;
+                    Session["Email"] = user.Email;
+                    Session["MobileNumber"] = user.MobileNumber;
+                    Session["Role"] = user.RoleId;
                     return Json(new { message = "Success" });
                 }
                 else

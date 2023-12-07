@@ -22,19 +22,28 @@ namespace V08.Controllers
         [CustomAuthorization(EnumRole.Employee)]
         public ActionResult EmployeeViewPage()
         {
-            return View(Session["Account"]);
+            ViewBag.FirstName = Session["FirstName"];
+            ViewBag.OtherName = Session["OtherName"];
+            ViewBag.LastName = Session["LastName"];
+            return View();
         }
         [CustomSessionState]
         [CustomAuthorization(EnumRole.Manager)]
         public ActionResult ManagerViewPage()
         {
-            return View(Session["Account"]);
+            ViewBag.FirstName = Session["FirstName"];
+            ViewBag.OtherName = Session["OtherName"];
+            ViewBag.LastName = Session["LastName"];
+            return View();
         }
         [CustomSessionState]
         [CustomAuthorization(EnumRole.Administrator)]
         public ActionResult AdministratorViewPage()
         {
-            return View(Session["Account"]);
+            ViewBag.FirstName = Session["FirstName"];
+            ViewBag.OtherName = Session["OtherName"];
+            ViewBag.LastName = Session["LastName"];
+            return View();
         }
         public ActionResult RegisterEnrollment()
         {

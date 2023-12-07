@@ -27,5 +27,11 @@ namespace V08.Controllers
         {
             return Json(_trainingService.Get(id), JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult GetUnenrolledTrainingList()
+        {
+            int employeeId = (int)Session["EmployeeId"];
+            return Json(_trainingService.GetUnenrolled(employeeId), JsonRequestBehavior.AllowGet);
+        }
     }
 }

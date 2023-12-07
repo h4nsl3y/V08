@@ -21,7 +21,7 @@ namespace V08.Controllers
         {
             Enrollment enrollment = new Enrollment();
             enrollment.TrainingId=id;
-            enrollment.EmployeeId = (Session["Account"] as Account).EmployeeId;
+            enrollment.EmployeeId = (int)Session["EmployeeId"];
             enrollment.SubmissionDate = DateTime.Now;
             if (_enrollmentService.Add(enrollment))
             {

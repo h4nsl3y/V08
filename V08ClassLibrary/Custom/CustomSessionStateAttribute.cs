@@ -13,7 +13,7 @@ namespace V08ClassLibrary.Custom
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             Controller controller = filterContext.Controller as Controller;
-            if (controller != null && controller.Session["Account"] == null )
+            if (controller != null && controller.Session["EmployeeId"] == null )
             {
                 filterContext.Result = new RedirectToRouteResult(
                        new RouteValueDictionary(

@@ -77,6 +77,7 @@
     <Compile Include="Repositories\AccountRepositories\IAccountManagementRepository.cs" />
     <Compile Include="Repositories\EnrollmentRepositories\EnrollmentRepository.cs" />
     <Compile Include="Repositories\EnrollmentRepositories\IEnrollmentRepository.cs" />
+    <Compile Include="Repositories\TrainingRepositories\ITrainingManagementRepository.cs" />
     <Compile Include="Repositories\TrainingRepositories\ITrainingRepository.cs" />
     <Compile Include="Repositories\AccountRepositories\IAccountRepository.cs" />
     <Compile Include="Repositories\TrainingRepositories\TrainingRepository.cs" />

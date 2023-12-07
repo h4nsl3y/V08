@@ -1,20 +1,19 @@
-﻿@model V08DataAccessLayer.Entity.Account
-@{
+﻿@{
     Layout = null;
 }
 
 @{ 
     string fullName;
     string initial;
-    if (Model.OtherName != null)
+    if (ViewBag.Othername != null)
     {
-        fullName = Model.FirstName + " " + Model.OtherName + " " + Model.LastName; 
+        fullName = ViewBag.FirstName+ " " + ViewBag.OtherName + " " + ViewBag.LastName; 
     }
     else
     {
-        fullName = Model.FirstName + " " + Model.LastName; 
+        fullName = ViewBag.FirstName + " " + ViewBag.LastName; 
     }
-    initial = Model.FirstName.Substring(0, 1) + Model.LastName.Substring(0, 1);
+    initial = ViewBag.FirstName.Substring(0, 1) + ViewBag.LastName.Substring(0, 1);
 }
 
 
